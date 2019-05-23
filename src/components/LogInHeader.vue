@@ -1,7 +1,8 @@
 <template>
     <div>
-  <b-navbar toggleable="lg" type="dark" variant="primary">
-    <b-navbar-brand href="#" class="spacingImg"><img src="/Users/samishakhurana/Downloads/Screenshot 2019-05-23 at 12.12.04 PM.png"></b-navbar-brand>
+
+  <b-navbar toggleable="lg" type="dark" variant="primary" class="navbarSpacing">
+    <b-navbar-brand href="#" class="spacingImg"><img :src="logoUrl" class="spacingImg"></b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -26,19 +27,31 @@
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
+
+
 </div>
 
 </template>
 
 <script>
+import logo from "../assets/logo.png"
 export default {
-  name: 'LogInHeader'
+  name: 'LogInHeader',
+  data (){
+     return {
+       logoUrl: logo 
+     }
+  }
 }
 </script>
 
 <style>
+  .navbarSpacing{
+    padding: 100px;
+  }
   .spacingImg{
-    padding-right: 15px;
+    width: 50px;
+    height: 50px;
   }
   .spacingDropDown{
     padding-right: 15px;
