@@ -2,8 +2,8 @@
     <div>
         <b-button @click="navigateTo" variant="light">
         <b-card
-            title="Card Title"
-            img-src="https://picsum.photos/600/300/?image=25"
+            :title="title"
+            :img-src="imageUrl || 'https://picsum.photos/600/300/?image=25'"
             img-alt="Image"
             img-top
             tag="article"
@@ -11,7 +11,7 @@
             class="mb-2"
         >
         <b-card-text>
-            Some quick example text to build on the card title and make up the bulk of the card's content.
+            {{description}}
         </b-card-text>
         </b-card>
         </b-button>
@@ -23,6 +23,14 @@ export default {
     name:'MinimalProductDesc',
     props: {
      title : {
+      type: String,
+      default: ""
+     },
+     imageUrl : {
+      type: String,
+      default: ""
+     },
+     description : {
       type: String,
       default: ""
      },

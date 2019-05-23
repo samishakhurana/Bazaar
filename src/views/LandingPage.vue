@@ -3,18 +3,14 @@
     <LogInHeader />
     <SlideShow />
     <div class="product-list">
-        <MinimalProductDesc title="" imageUrl="" description=""/>
-        <MinimalProductDesc />
-        <MinimalProductDesc />
-        <MinimalProductDesc />
-        <MinimalProductDesc />
-        <MinimalProductDesc />
-        <MinimalProductDesc />
-        <MinimalProductDesc />
+        <div v-for="item in prodLIST" :key="item.productId">
+            <MinimalProductDesc :title="item.name" :imageUrl="item.imageUrl" :description="item.subCategory"/>
+        </div>
     </div>
 </div>
 </template>
 <script>
+import {mapActions, mapGetters} from 'vuex'
 import LogInHeader from '/Users/samishakhurana/Desktop/ecommerce/web/src/components/LogInHeader.vue';
 import SlideShow from '/Users/samishakhurana/Desktop/ecommerce/web/src/components/SlideShow.vue';
 import MinimalProductDesc from '/Users/samishakhurana/Desktop/ecommerce/web/src/components/MinimalProductDesc.vue';
@@ -25,22 +21,29 @@ export default {
         SlideShow,
         MinimalProductDesc
     },
+    methods: {
+      ...mapActions(['fetchProducts'])
+    },
     data () {
         return {
            prodLIST: []
         }
     },
     created () {
-    //   this.$store.dispatch('getprodList')
+      console.log('++++', this.$store)
+      this.$store.dispatch('fetchProducts')
     },
     mounted () {
 
     },
     computed : { 
-        
+       ...mapGetters({
+        getProduct: 'getProducts'
+       }) 
     },
     watch : {
-      prodList: function (newValue, oldValue) {
+      getProduct: function (newValue, oldValue) {
+        console.log('new value', newValue)
         this.prodLIST = newValue
       }
     }

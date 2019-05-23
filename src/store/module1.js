@@ -1,20 +1,9 @@
 import productAPI from '/Users/samishakhurana/Desktop/ecommerce/web/src/productAPI/productAPI.js';
 export default{
     state:{
-        // imageURL:"",
-        // name:"",
-        // price:"",
-        // category:"",
-
-        products=null
-
+        products : []
     },
     getters: {
-        // getImage: state => state.imageURL,
-        // getName: state => state.name,
-        // getPrice: state => state.price,
-        // getCategory: state => state.getCategory
-
         getProducts: state=>state.products
     },
     mutations: {  
@@ -37,7 +26,8 @@ export default{
     actions:{
         fetchProducts:(context)=>{
             productAPI.getData((result)=>{
-                context.commit('UPDATE_PRODUCTS',result)
+                console.log('response', result.data)
+                context.commit('UPDATE_PRODUCTS',result.data)
             })
         }
 
