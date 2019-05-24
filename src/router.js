@@ -6,6 +6,7 @@ import Profile from './views/Profile.vue'
 import LoginSignup from './views/LoginSignup.vue'
 import Checkout from './views/Checkout.vue'
 import ProductDetails from './views/ProductDetails.vue'
+import PaymentPage from './views/PaymentPage.vue'
 import Home from './views/Home.vue'
 
 Vue.use(Router)
@@ -43,8 +44,13 @@ const router = new Router({
   },
   {
     name:'productdetails',
-    path:'/productdetails',
+    path:'/productdetails', 
     component:ProductDetails
+  },
+  {
+    name:'paymentpage',
+    path:'/paymentpage',
+    component:PaymentPage
   }
 ]
 })

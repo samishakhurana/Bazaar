@@ -34,10 +34,14 @@ export default {
       type: String,
       default: ""
      },
+     productId:{
+         type: String,
+         default:0
+     }
     },
     methods:{
         navigateTo(){
-            this.$router.push({name:'productdetails'})
+            this.$router.push('/productdetails'+ '?id=' + this.productId)
         }
     }
 }

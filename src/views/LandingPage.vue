@@ -4,9 +4,10 @@
     <SlideShow />
     <div class="product-list">
         <div v-for="item in prodLIST" :key="item.productId">
-            <MinimalProductDesc :title="item.name" :imageUrl="item.imageUrl" :description="item.subCategory"/>
+            <MinimalProductDesc :title="item.name" :imageUrl="item.imageUrl" :description="item.subCategory" :productId="item.productId"/>
         </div>
     </div>
+    <Footer />
 </div>
 </template>
 <script>
@@ -14,19 +15,23 @@ import {mapActions, mapGetters} from 'vuex'
 import LogInHeader from '../components/LogInHeader.vue';
 import SlideShow from '../components/SlideShow.vue';
 import MinimalProductDesc from '../components/MinimalProductDesc.vue';
+import Footer from '../components/Footer.vue';
+
 export default {
     name:'LandingPage',
     components:{
         LogInHeader,
         SlideShow,
-        MinimalProductDesc
+        MinimalProductDesc,
+        Footer
     },
     methods: {
       ...mapActions(['fetchProducts'])
     },
     data () {
         return {
-           prodLIST: []
+           prodLIST: [],
+           
         }
     },
     created () {

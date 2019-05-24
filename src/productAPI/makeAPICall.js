@@ -1,8 +1,13 @@
 import axios from 'axios'
 
 export default{
-    makeGetRequest(path,callback){
-        axios.get(path)
+    makeGetRequest(path,callback, params){
+        let query = ''
+        if(params) {
+            query = '?id='+params.id
+        }
+       
+        axios.get(path+query)
         .then(callback)
         .catch((error)=>{console.log(error)})
     },
@@ -14,5 +19,10 @@ export default{
         })
         .then(callback)
         .catch((error)=>{console.log(error)})
+    },
+    makePostRequest(path,callback,obj) {
+        axios.post(path,obj)
+            .then(callback)
+            .catch((error) => { console.log(error) })
     }
 }

@@ -21,7 +21,22 @@ module.exports = {
                 pathRewrite: {
                     '^/user': ''
                 }
-            } 
+            }, 
+           '/info': {
+                target: 'http://172.16.20.53:8080',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/info': ''
+                }
+            },
+            '/append': {
+                target: 'http://localhost:8080',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/append': ''
+                }
+            }
+            
         }
     }
   }
