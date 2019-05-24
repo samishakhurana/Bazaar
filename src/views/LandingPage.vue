@@ -11,9 +11,9 @@
 </template>
 <script>
 import {mapActions, mapGetters} from 'vuex'
-import LogInHeader from '/Users/samishakhurana/Desktop/ecommerce/web/src/components/LogInHeader.vue';
-import SlideShow from '/Users/samishakhurana/Desktop/ecommerce/web/src/components/SlideShow.vue';
-import MinimalProductDesc from '/Users/samishakhurana/Desktop/ecommerce/web/src/components/MinimalProductDesc.vue';
+import LogInHeader from '../components/LogInHeader.vue';
+import SlideShow from '../components/SlideShow.vue';
+import MinimalProductDesc from '../components/MinimalProductDesc.vue';
 export default {
     name:'LandingPage',
     components:{

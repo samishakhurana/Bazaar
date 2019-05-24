@@ -7,9 +7,15 @@ module.exports = {
                 changeOrigin: true,
                 pathRewrite: {
                     '^/api': ''
-                }
+                },
             },
-            
+            '/rest': {
+                target: 'http://172.16.20.70:8080/rest',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/rest': ''
+                }
+            } 
         }
     }
   }

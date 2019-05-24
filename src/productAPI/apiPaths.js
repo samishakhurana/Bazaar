@@ -1,3 +1,5 @@
 export default {
-    getProductList: '/api' + '/gettoprated' 
+    getProductList: '/api' + '/gettoprated',
+    searchProductList: '/rest/search/',
+    getUserProfile: '/user/getprofile', 
 }

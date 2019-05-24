@@ -18,8 +18,8 @@
           </div>
         </b-nav-item>
         <b-nav-form class="spacingSearch">
-          <b-form-input size="sm" class="mr-sm-2" placeholder="Search" ></b-form-input>
-          <b-button size="sm" class="my-2 my-sm-0" type="submit" variant="btn btn-primary"><b>Search</b></b-button>
+          <b-form-input size="sm" class="mr-sm-2" placeholder="Search" v-model="searchtext" ></b-form-input>
+          <b-button size="sm" class="my-2 my-sm-0" type="submit" variant="btn btn-primary" @click="searchByName"><b>Search</b></b-button>
         </b-nav-form>
         <b-nav-item >
           <b-button variant="btn btn-primary" class="spacingButton"><b>Login/Signup</b></b-button>
@@ -39,8 +39,21 @@ export default {
   name: 'LogInHeader',
   data (){
      return {
-       logoUrl: logo 
+       logoUrl: logo,
+       searchtext: '',
      }
+  },
+  methods: {
+    searchByName: function(){
+      let searchtext = this.searchtext;
+      this.$router.push({name: "search", params: {text: searchtext}});
+    }
+  },
+  props: {
+    searchtextprop: String
+  },
+  created(){
+    this.searchtext = this.searchtextprop;
   }
 }
 </script>
