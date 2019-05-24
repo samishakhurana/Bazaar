@@ -46,7 +46,7 @@ export default {
   methods: {
     searchByName: function(){
       let searchtext = this.searchtext;
-      this.$router.push({name: "search", params: {text: searchtext}});
+      this.$router.push({name: "search", query: {q: searchtext}});
     }
   },
   props: {

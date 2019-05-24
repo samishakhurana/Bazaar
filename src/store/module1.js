@@ -29,7 +29,7 @@ export default{
         UPDATE_SEARCHPRODUCTS:(state, result)=>{
             state.searchresults=result
         },
-        UPDATE_USERPROFILE:(state, result)=>(state, result)=>{
+        UPDATE_USERPROFILE:(state, result)=>{
             state.userprofile=result
         },
     },

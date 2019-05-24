@@ -25,8 +25,8 @@ export default {
         SearchProductDesc,
     },
     created(){
-        this.textvalue = this.text;
-        this.$store.dispatch('fetchSearchProducts', this.textvalue);
+        this.textvalue = this.$route.query.q;// this.text;
+        this.$store.dispatch('fetchSearchProducts', this.$route.query.q);
     },
     watch : {
       getSearchProduct: function (newValue, oldValue) {
@@ -42,7 +42,7 @@ export default {
         ...mapActions(['fetchSearchProducts'])
     },
     props: {
-        text: {type: String, required: true}
+    //    text: {type: String, required: true}
     }
 }
 </script>

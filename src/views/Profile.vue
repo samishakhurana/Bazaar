@@ -2,18 +2,12 @@
 <div>
     <LogInHeader/>
     <b-container>
-        <b-row>
-            <b-col>
+        <b-row class="details-row">
+            <b-col class="details-col">
                 <h3>Name: {{userinfo.name}}</h3>
-                <p>Username: {{userinfo.username}}</p>
+                <p>Username: {{userinfo.uname}}</p>
                 <p>E-mail: {{userinfo.email}}</p>
                 <p>Phone: {{userinfo.phone}}</p>
-                <div>
-                    <p>Addresses:</p>
-                    <b-card v-for="address in userinfo.address" v-bind:key="address"><b-card-text>
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                    </b-card-text></b-card>
-                </div>
             </b-col>
             <b-col>
 
@@ -24,7 +18,7 @@
 </template>
 <script>
 import LogInHeader from '../components/LogInHeader.vue';
-import {mapActions, mapGetters} from 'vuex'
+import {mapActions, mapGetters} from 'vuex';
 
 export default {
     name:'Profile',
@@ -34,12 +28,7 @@ export default {
         }
     },
     created(){
-        this.$store.dispatch('fetchUserInfo');  
-    },
-    watch: {
-      getUserInfos: function (newValue, oldValue) {
-        this.userinfo = newValue;
-      }
+        this.$store.dispatch('fetchProfile');  
     },
     methods: {
         ...mapActions(['fetchProfile'])
@@ -49,5 +38,22 @@ export default {
         getUserInfos: 'getUserInfo'
        }) 
     },
+    watch : {
+      getUserInfos: function (newValue, oldValue) {
+        this.userinfo = newValue;
+      }
+    },
+    components: {
+        LogInHeader,
+    }
 }
 </script>
+<style scoped>
+.details-col {
+    text-align: left;
+}
+.details-row {
+    margin-top: 40px;
+}
+</style>
+

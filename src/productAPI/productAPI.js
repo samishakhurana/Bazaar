@@ -6,7 +6,7 @@ export default{
         makeApiCall.makeGetRequest(apiPath.getProductList, callback)
     },
     searchData(searchtext, callback){
-        makeApiCall.makeGetRequest(apiPath.searchProductList+searchtext, callback)
+        makeApiCall.makeGetRequestwithParam(apiPath.searchProductList, searchtext, callback)
     },
     getProfile(callback){
         makeApiCall.makeGetRequest(apiPath.getUserProfile, callback)
