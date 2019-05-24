@@ -1,3 +1,5 @@
 export default {
-    getProductList: '/api' + '/gettoprated' 
+    getProductList: '/api' + '/product/gettoprated',
+    getSingleProduct: '/info' + '/product/getproduct',
+    addToCart: '/append'+'/cart/add'
 }
