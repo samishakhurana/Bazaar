@@ -2,10 +2,12 @@
 <div>
     <LogInHeader />
     <SlideShow />
+    <!-- <h2>:imageUrl="item.imageUrl[1]"</h2> -->
+    
     <div class="product-list">
         <div v-for="item in prodLIST" :key="item.productId">
-            <MinimalProductDesc :title="item.name" :imageUrl="item.imageUrl" :description="item.subCategory" :productId="item.productId"/>
-        </div>
+            <MinimalProductDesc :title="item.name"  :description="item.subCategory" :productId="item.productId"/>
+        </div> 
     </div>
     <Footer />
 </div>
@@ -48,8 +50,8 @@ export default {
     },
     watch : {
       getProduct: function (newValue, oldValue) {
-        console.log('new value', newValue)
         this.prodLIST = newValue
+        console.log('new value=====', this.prodLIST)
       }
     }
 }

@@ -9,11 +9,14 @@
 					<div class="preview col-md-6">
 						
 						<div class="preview-pic tab-content">
-						  <div class="tab-pane active" id="pic-1"><img :src="product.imageUrl" alt="Image"/></div>
+						  <div class="tab-pane active" id="pic-1"><img :src="product.imageUrl[1]" alt="Image"/></div>
 						</div>	
 					</div>
-					<div class="details col-md-6">
-						<h1 class="product-title"><b>{{product.name}}</b></h1>
+					<div class="col-md-6">
+						<h3 id="mText">Get your favourite product from your favourite Merchant</h3>
+					</div>
+          <div class="details">
+            <h1 class="product-title"><b>{{product.name}}</b></h1>
             <h3 class="desc">A one of its kind product by {{product.company}}</h3>
 						<div class="rating">
 							<span class="review-no">41 reviews</span>
@@ -23,7 +26,7 @@
             <div v-for="item in Object.keys(this.product.productAttribute)" :key="item">
                   <h4>{{item}}: <span>{{product.productAttribute[item]}}</span> </h4>            
             </div>
-            </div>
+          </div>
             <div class="quantity">
       <button class="plus-btn" type="button" name="button" @click="addQuant">
         <img :src="plus_sign" alt="Add" />
@@ -35,7 +38,7 @@
     </div>
             <b-button variant="primary" id="addToCart" @click="addDataToCart">Add To Cart</b-button>
             <b-button variant="primary">Buy Now</b-button>
-					</div>
+            </div>
 				</div>
 			</div>
 		</div>
@@ -59,7 +62,8 @@ export default {
       plus_sign:plus,
       minus_sign:minus,
       product: {},
-      result:""
+      result:"",
+      merchantData:{}
     }
   },
   components: {
@@ -76,6 +80,7 @@ export default {
     console.log(this.$route.query)
     console.log('productDetails', this.$store)
     this.$store.dispatch('fetchSingleProduct', this.$route.query)
+    //this.$store.dispatch('getMerchantDetails',this.product.productId)
   },
   mounted () {
 
@@ -83,18 +88,23 @@ export default {
     computed : { 
        ...mapGetters({
         getProduct: 'getProduct',
-        addToCart:'addToCart'
+        getResult:'getResult',
+        getData:'getData'
        }) 
     },
     watch : {
       getProduct: function (newValue, oldValue) {
         console.log('new value', newValue)
         this.product = newValue
-        console.log(this.product.name)
+        console.log(this.product.imageUrl)
       },
-      addToCart:function(newValue,oldValue){
+      getResult:function(newValue,oldValue){
         console.log('new value', newValue)
         this.result = newValue
+      },
+      getData: function(newValue,oldValue){
+        console.log('new value', newValue)
+        this.merchantData = newValue
       }
     },
     methods: {
@@ -107,6 +117,7 @@ export default {
           'userId':11
         }
           this.$store.dispatch('addToCart', temp);
+          
       },
       // ...mapActions(['getSingleProduct']),
       addQuant(){
@@ -129,6 +140,10 @@ export default {
 </script>
 
 <style>
+#mText{
+  color: black;
+}
+
 .desc{
   color: black;
 }

@@ -16,7 +16,7 @@ module.exports = {
                 }
             },
             '/user':{
-                target: 'http://localhost:8080/user',
+                target: 'http://172.16.20.81:8080/user',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/user': ''
@@ -36,6 +36,7 @@ module.exports = {
                     '^/append': ''
                 }
             }
+            
             
         }
     }
