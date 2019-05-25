@@ -6,7 +6,6 @@ export default{
         if(params) {
             query = '?id='+params.id
         }
-       
         axios.get(path+query)
         .then(callback)
         .catch((error)=>{console.log(error)})
@@ -24,5 +23,5 @@ export default{
         axios.post(path,obj)
             .then(callback)
             .catch((error) => { console.log(error) })
-    }
+    },
 }

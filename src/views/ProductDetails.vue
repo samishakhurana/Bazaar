@@ -48,8 +48,8 @@
 <script>
 import minus from '../assets/minus.png';
 import plus from '../assets/plus.png';
-import LogInHeader from "/Users/samishakhurana/Desktop/ecommerce/web/src/components/LogInHeader.vue";
-import Footer from "/Users/samishakhurana/Desktop/ecommerce/web/src/components/Footer.vue";
+import LogInHeader from "../components/LogInHeader.vue";
+import Footer from "../components/Footer.vue";
 import {mapActions, mapGetters} from 'vuex';
 
 export default {

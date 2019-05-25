@@ -1,5 +1,5 @@
-import makeApiCall from '/Users/samishakhurana/Desktop/ecommerce/web/src/productAPI/makeAPICall.js'
-import apiPath from '/Users/samishakhurana/Desktop/ecommerce/web/src/productAPI/apiPaths.js'
+import makeApiCall from '../productAPI/makeAPICall.js'
+import apiPath from '../productAPI/apiPaths.js'
 
 export default{
     getSingleProduct(callback, id){

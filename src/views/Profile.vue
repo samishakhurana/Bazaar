@@ -4,13 +4,16 @@
     <b-container>
         <b-row class="details-row">
             <b-col class="details-col">
-                <h3>Name: {{userinfo.name}}</h3>
-                <p>Username: {{userinfo.uname}}</p>
-                <p>E-mail: {{userinfo.email}}</p>
-                <p>Phone: {{userinfo.phone}}</p>
+                <h3>Name: {{userpayload.userInfo.name}}</h3>
+                <p>Username: {{userpayload.userInfo.uname}}</p>
+                <p>E-mail: {{userpayload.userInfo.email}}</p>
+                <!-- <p>Phone: {{userpayload.profile.phone}}</p> -->
             </b-col>
             <b-col>
-
+                <div v-for="order in userpayload.orderHistory" v-bind:key="order.ordernumber">
+                    {{order}}
+                    {{prodlist[order.ordernumber]}}
+                </div>
             </b-col>
         </b-row>
     </b-container>
@@ -19,12 +22,15 @@
 <script>
 import LogInHeader from '../components/LogInHeader.vue';
 import {mapActions, mapGetters} from 'vuex';
+import cartAPI from '../cartAPI/cartAPI.js'; 
+
 
 export default {
     name:'Profile',
     data(){
         return {
-            userinfo: {}
+            userpayload: {},
+            prodlist: {}
         }
     },
     created(){
@@ -40,7 +46,15 @@ export default {
     },
     watch : {
       getUserInfos: function (newValue, oldValue) {
-        this.userinfo = newValue;
+        if(newValue.status == "success"){
+            this.userpayload = newValue.payload;
+            for(let order in this.userpayload.orderHistory){
+                let self = this;
+                cartAPI.getSingleProduct((result) => {
+                    self.prodlist[order.ordernumber] = result.data
+                },{"id":3});
+            }
+        }
       }
     },
     components: {
