@@ -2,7 +2,7 @@ import merchantApi from '../merchantAPI/merchantApi.js';
 
 export default {
     state: {
-        data: ''
+        data: []
     },
     getters: {
         getData: (state) => state.data
@@ -15,11 +15,11 @@ export default {
         
     },
     actions: {
-        getMerchantDetails: (context, id) => {
-            console.log('context', context, 'obj', obj)
-            merchantApi.getData((result) => {
-                context.commit('SET_DATA',result)
-            },id)
+        getMerchantDetails: (context, pId) => {
+            console.log('IN Merchant context', context, 'obj', obj)
+            merchantApi.getMerchData((result) => {
+                context.commit('SET_DATA',result.data)
+            },pId)
         }
     }
  }

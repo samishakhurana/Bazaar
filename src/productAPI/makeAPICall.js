@@ -24,4 +24,13 @@ export default{
             .then(callback)
             .catch((error) => { console.log(error) })
     },
+    makeGetRequestwithParamMerch(path,callback,params_in){
+        axios.get(path, {
+            params: {
+                "pId": params_in.id
+            }
+        })
+        .then(callback)
+        .catch((error)=>{console.log(error)})
+    },
 }

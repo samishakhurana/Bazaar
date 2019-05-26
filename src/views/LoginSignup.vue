@@ -15,9 +15,10 @@
   </div>
   <div class="form-group">
     <label for="pswd">Password</label>
-    <input type="password" class="form-control" id="pswd" placeholder="Enter Password" required>
+    <input type="password" class="form-control" id="pswd" placeholder="Enter Password" frequired>
   </div>
-  <button type="submit" class="btn btn-light" @click="login">Submit</button>
+  
+  <button type="submit" class="btn btn-light" @click="checkSigninData">Submit</button>
     </b-col>
     </div>
 
@@ -50,7 +51,7 @@
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Terms and Conditions</label>
   </div>
-  <button type="submit" class="btn btn-light" @click="signup">Submit</button>
+  <button type="submit" class="btn btn-light" @click="checkSignupData">Submit</button>
 <!-- </form> -->
     </b-col>
     </div>
@@ -85,7 +86,8 @@ export default {
         console.log(""+this.result)
 
         if(this.result.status==="success"){
-          this.$router.push({name:'landingpage'})
+          localStorage.setItem('userDetails', JSON.stringify(this.result));
+          this.$router.push('/landingpage')
         }
         else{
           console.log("fail");
@@ -106,8 +108,6 @@ export default {
         }
         this.$store.dispatch('checkLogin',temp);
         console.log("log in result "+this.result.status )
-        
-        
       },
       signup(){
         //this.$router.push({name:'landingpage'})
@@ -122,6 +122,30 @@ export default {
         console.log(temp.uname+temp.password);
         this.$store.dispatch('addUser',temp);
         this.$router.push({name:'landingpage'})
+      },
+      checkSigninData(){
+        var uname=document.getElementById("username").value;
+        var pswd=document.getElementById("pswd").value;
+        if(uname.length!=0&&pswd.length!=0){
+          signup();
+        }
+        else{
+          alert("Invalid");
+        }
+      },
+      checkSignupData(){
+        var name=document.getElementById("InputName").value;
+        var email=document.getElementById("InputEmail").value;
+        var password=document.getElementById("InputPassword").value;
+        var username=document.getElementById("InputUsername").value;
+        var number=document.getElementById("PhoneNumber").value;
+
+        if(name.length!=0&&email.length!=0&&password.length!=0&&username.length!=0&&number.length!=10){
+          login();
+        }
+        else{
+          alert("Invalid")
+        }
       }
     }
 }
