@@ -2,7 +2,7 @@
   <div>
     <LogInHeader/>
     <div>
-      _<div class="container">
+      <div class="container">
 		<div class="card">
 			<div class="container-fliud">
 				<div class="wrapper row">
@@ -37,7 +37,7 @@
       </button>
     </div>
             <b-button variant="primary" id="addToCart" @click="addDataToCart">Add To Cart</b-button>
-            <b-button variant="primary">Buy Now</b-button>
+            <b-button variant="primary" @click="buyNow">Buy Now</b-button>
             </div>
 				</div>
 			</div>
@@ -54,6 +54,8 @@ import plus from '../assets/plus.png';
 import LogInHeader from "../components/LogInHeader.vue";
 import Footer from "../components/Footer.vue";
 import {mapActions, mapGetters} from 'vuex';
+import apiPath from '../productAPI/apiPaths';
+import makeApiCall from '../productAPI/makeAPICall';
 
 export default {
   name: "ProductDetails",
@@ -61,9 +63,9 @@ export default {
     return{
       plus_sign:plus,
       minus_sign:minus,
-      product: {},
+      product: [],
       result:"",
-      merchantData:{}
+      merchantData:[]
     }
   },
   components: {
@@ -80,7 +82,10 @@ export default {
     console.log(this.$route.query)
     console.log('productDetails', this.$store)
     this.$store.dispatch('fetchSingleProduct', this.$route.query)
-    //this.$store.dispatch('getMerchantDetails',this.product.productId)
+    //this.$store.dispatch('getMerchantDetails', this.$route.query)
+    let self = this;
+    makeApiCall.makeGetRequestwithParamMerch(apiPath.getMerchantList, (result)=>{console.log("result is "+result.data); self.merchantData = result.data;},this.$route.query)
+
   },
   mounted () {
 
@@ -89,7 +94,7 @@ export default {
        ...mapGetters({
         getProduct: 'getProduct',
         getResult:'getResult',
-        getData:'getData'
+        getData:'getData',
        }) 
     },
     watch : {
@@ -97,15 +102,18 @@ export default {
         console.log('new value', newValue)
         this.product = newValue
         console.log(this.product.imageUrl)
+  
       },
       getResult:function(newValue,oldValue){
         console.log('new value', newValue)
         this.result = newValue
       },
       getData: function(newValue,oldValue){
-        console.log('new value', newValue)
+        console.log('Merchant new value',newValue)
         this.merchantData = newValue
-      }
+        console.log("Merchant new value ",this.merchantData)
+      },
+      
     },
     methods: {
       addDataToCart(){
@@ -134,6 +142,9 @@ export default {
         }
         
         document.getElementById("quant").value=num;
+      },
+      buyNow(){
+        this.$router.push({name:'paymentpage'})
       }
   },
 };

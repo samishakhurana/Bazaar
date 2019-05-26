@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="navbarSpacing">
 
   <b-navbar toggleable="lg" type="dark" variant="primary" class="navbarSpacing">
-    <b-navbar-brand href="#" class="spacingImg"><img :src="logoUrl" class="spacingImg"></b-navbar-brand>
+    <b-navbar-brand href="http://localhost:8081/landingpage" class="spacingImg"><img :src="logoUrl" class="spacingImg"></b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -18,12 +18,18 @@
           </div>
         </b-nav-item>
         <b-nav-form class="spacingSearch">
-          <b-form-input size="sm" class="mr-sm-2" placeholder="Search" v-model="searchtext" ></b-form-input>
+          <b-form-input size="sm" class="mr-sm-2" placeholder="Search your fav product" v-model="searchtext" ></b-form-input>
           <b-button size="sm" class="my-2 my-sm-0" type="submit" variant="btn btn-primary" @click="searchByName"><b>Search</b></b-button>
         </b-nav-form>
+        <div v-if="validate()">
         <b-nav-item >
           <b-button variant="btn btn-primary" class="spacingButton" @click="navigateToLoginSignup"><b>Login/Signup</b></b-button>
         </b-nav-item>
+        </div>
+        <div class="uName" v-else>
+          <h3 class="name">Hi {{getUserName()}}</h3>
+        </div>
+            <b-navbar-brand href="http://localhost:8081/cart" class="spacingImg"><img :src="cartLogo" class="spacingImg"></b-navbar-brand>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -42,6 +48,9 @@ export default {
      return {
        logoUrl: logo,
        searchtext: '',
+       cartLogo: cart_logo,
+       userName: localStorage.getItem('userDetails').name,
+       //localStorageStatus:window.localStorage.length
      }
   },
   methods: {
@@ -54,6 +63,18 @@ export default {
     },
     navigateToLoginSignup(){
       this.$router.push({name:'loginsignup'})
+    },
+    getUserName () {
+      
+      return JSON.parse(localStorage.getItem('userDetails')).payload.uname
+    },
+    validate(){
+      if(window.localStorage.length==0){
+        return true;
+      }
+      else{
+        return false;
+      }
     }
   },
   props: {
@@ -67,24 +88,34 @@ export default {
 
 <style>
   .navbarSpacing{
-    padding: 100px;
+    padding-bottom: 0px;
   }
   .spacingImg{
     width: 50px;
-    height: 80px;
+    height: 100px;
+    padding-top: 10px;
+    padding-bottom: 0px;
   }
   .spacingDropDown{
-    padding-right: 15px;
+    padding-left: 100px;
+    padding-right: 100px;
   }
 
   .spacingSearch{
-    padding-right: 15px;
+    padding-right: 100px;
   }
   .spacingButton{
     padding-right: 50px;
-    padding-left: 50px
+    padding-left: 50px;
+    padding-top:30px;
   }
-
+  .name{
+    color: white;
+    font-style: italic;
+    padding-right: 200px;
+    padding-top: 30px;
+  }
+  
   b-form-input{
     width: 500px;
   }

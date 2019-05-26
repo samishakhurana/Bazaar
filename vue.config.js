@@ -35,6 +35,13 @@ module.exports = {
                 pathRewrite: {
                     '^/append': ''
                 }
+            },
+            '/merchant':{
+                target: 'http://172.16.20.24:8080/merchant',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/merchant': ''
+                }
             }
             
             
