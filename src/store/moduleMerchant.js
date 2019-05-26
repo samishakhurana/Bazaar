@@ -2,15 +2,15 @@ import merchantApi from '../merchantAPI/merchantApi.js';
 
 export default {
     state: {
-        data: []
+        datalist: []
     },
     getters: {
-        getData: (state) => state.data
+        getData: (state) => state.datalist
         
     },
     mutations: {
         SET_DATA: (state,result) => {
-            state.data = result
+            state.datalist = result
         }
         
     },

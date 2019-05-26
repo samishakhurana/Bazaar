@@ -9,19 +9,44 @@
 					<div class="preview col-md-6">
 						
 						<div class="preview-pic tab-content">
-						  <div class="tab-pane active" id="pic-1"><img :src="product.imageUrl[1]" alt="Image"/></div>
+						  <div class="tab-pane active" id="pic-1"><img :src="product.imageUrl[1]" alt="Image" id="pImage"/></div>
 						</div>	
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-6 merch">
 						<h3 id="mText">Get your favourite product from your favourite Merchant</h3>
-					</div>
+            <div class="table-responsive">
+              <table class="table">
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Rating</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Availability</th>
+                  <th scope="col"></th>
+                </tr>
+                <!-- <div v-for="item in merchantData" :key="item"> -->
+                  
+                <tr v-for="item1 in merchantData" :key="item1.mId">
+                  <td scope="row" >{{item1.mname}}</td>
+                  <td scope="row" >{{item1.mrating}}</td>
+                  <td scope="row" >{{item1.price}}</td>
+                  <td scope="row" >
+                    <div v-if="item1.stock > 0">In Stock</div>
+                    <div v-else>Out of Stock</div>
+                  </td> 
+                  <td >
+                    <div class="checkbox">
+                      <label><input type="checkbox" v-on:click="storeId(item1.mId,item1.price);count++;"/></label>
+                    </div>
+                  </td>
+                </tr>
+                
+                <!-- </div> -->
+              </table>
+            </div>
+					</div> 
           <div class="details">
             <h1 class="product-title"><b>{{product.name}}</b></h1>
             <h3 class="desc">A one of its kind product by {{product.company}}</h3>
-						<div class="rating">
-							<span class="review-no">41 reviews</span>
-						</div>
-						<h4 class="price">Price: <span>Rs.1800</span></h4>
             <div v-if="this.product && this.product.productAttribute">
             <div v-for="item in Object.keys(this.product.productAttribute)" :key="item">
                   <h4>{{item}}: <span>{{product.productAttribute[item]}}</span> </h4>            
@@ -29,11 +54,11 @@
           </div>
             <div class="quantity">
       <button class="plus-btn" type="button" name="button" @click="addQuant">
-        <img :src="plus_sign" alt="Add" />
+        <img :src="plus_sign" alt="Add" class="logo"/>
       </button>
       <input type="text" name="quant" value="1" id="quant">
       <button class="minus-btn" type="button" name="button" @click="decQuant">
-        <img :src="minus_sign" alt="Sub" />
+        <img :src="minus_sign" alt="Sub" class="logo"/>
       </button>
     </div>
             <b-button variant="primary" id="addToCart" @click="addDataToCart">Add To Cart</b-button>
@@ -65,8 +90,24 @@ export default {
       minus_sign:minus,
       product: [],
       result:"",
-      merchantData:[]
+      merchantData:[],
+      selectedMerchantId:0,
+      selectedMerchantPrice:0,
+      count:0,
+      storeId:()=>{}
     }
+  },
+  methods:{
+    storeId(id,price){
+      if(count%2!=0&&this.selectedMerchantId==id){
+        this.selectedMerchantId=0;
+      }
+      else{
+        this.selectedMerchantId==id
+        this.selectedMerchantPrice==price
+      }
+    }
+    
   },
   components: {
     LogInHeader,
@@ -84,7 +125,7 @@ export default {
     this.$store.dispatch('fetchSingleProduct', this.$route.query)
     //this.$store.dispatch('getMerchantDetails', this.$route.query)
     let self = this;
-    makeApiCall.makeGetRequestwithParamMerch(apiPath.getMerchantList, (result)=>{console.log("result is "+result.data); self.merchantData = result.data;},this.$route.query)
+    makeApiCall.makeGetRequestwithParamMerch(apiPath.getMerchantList, (result)=>{self.merchantData = result.data;},this.$route.query)
 
   },
   mounted () {
@@ -109,7 +150,7 @@ export default {
         this.result = newValue
       },
       getData: function(newValue,oldValue){
-        console.log('Merchant new value',newValue)
+        
         this.merchantData = newValue
         console.log("Merchant new value ",this.merchantData)
       },
@@ -117,14 +158,19 @@ export default {
     },
     methods: {
       addDataToCart(){
-        console.log("here");
+        var merchantObj;
+        console.log("in add to cart");
         var temp={
           'productId':parseInt(this.product.productId),
           'quantity':parseInt(document.getElementById("quant").value),
-          'merchantId':12,
-          'userId':11
+          'merchantId':this.selectedMerchantId,
+          'productname':this.product.name,
+          'imgurl':this.product.imageUrl["1"],
+          'price':this.selectedMerchantPrice
         }
-          this.$store.dispatch('addToCart', temp);
+        //console.log("=====")
+        console.log(temp);
+        this.$store.dispatch('addToCart', temp);
           
       },
       // ...mapActions(['getSingleProduct']),
@@ -163,9 +209,15 @@ template{
   font-family: 'open sans';
   overflow-x: hidden; }
 
-  img {
+  .logo{
   max-width: 100%;
-  max-height: 60%;
+  max-height: 50%;
+   }
+
+   #pImage{
+     padding-top: 50px;
+     height: 500px;
+     width: 300px
    }
 
    .preview {
@@ -229,6 +281,13 @@ template{
       border-radius: 30%;
     }
 
+    .details{
+      padding:50px;
+    }
+
+    .merch{
+      padding: 50px;
+    }
 
         
 </style>

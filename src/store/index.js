@@ -6,6 +6,8 @@ import moduleAddToCart from './moduleAddToCart.js'
 import moduleLogin from './moduleLogin.js'
 import moduleMerchant from './moduleMerchant.js'
 import moduleSignup from './moduleSignup.js'
+import moduleSubCategories from './moduleSubCategories.js'
+import modulePayment from './modulePayment.js'
 
 Vue.use(Vuex)
 
@@ -16,6 +18,8 @@ export default new Vuex.Store({
         moduleAddToCart,
         moduleLogin,
         moduleMerchant,
-        moduleSignup
+        moduleSignup,
+        moduleSubCategories,
+        modulePayment
     }
 })

@@ -8,5 +8,9 @@ export default{
 
     addToCart(callback,obj){
         makeApiCall.makePostRequest(apiPath.addToCart,callback,obj)
+    },
+    getDataFromCart(callback,id){
+        makeApiCall.makeGetRequest(apiPath.getAllProducts, callback, id)
+ 
     }
 }

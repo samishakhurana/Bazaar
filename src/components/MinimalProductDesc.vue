@@ -3,7 +3,7 @@
         <b-button @click="navigateTo" variant="light">
         <b-card
             :title="title"
-            :img-src="imageUrl || 'https://picsum.photos/600/300/?image=25'"
+            :img-src="imageUrl || 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png'"
             img-alt="Image"
             img-top
             tag="article"

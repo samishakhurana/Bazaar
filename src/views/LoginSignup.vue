@@ -13,12 +13,12 @@
     <label for="username">Username</label>
     <input type="text" class="form-control" id="username"  placeholder="Enter username" required>
   </div>
-  <div class="form-group">
+  <div>
     <label for="pswd">Password</label>
-    <input type="password" class="form-control" id="pswd" placeholder="Enter Password" frequired>
+    <input type="password" class="form-control" id="pswd" placeholder="Enter Password" required>
   </div>
   
-  <button type="submit" class="btn btn-light" @click="checkSigninData">Submit</button>
+  <button type="submit" class="btn btn-light" @click="/*checkSigninData*/ login()">Submit</button>
     </b-col>
     </div>
 
@@ -51,7 +51,7 @@
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Terms and Conditions</label>
   </div>
-  <button type="submit" class="btn btn-light" @click="checkSignupData">Submit</button>
+  <button type="submit" class="btn btn-light" @click="/*checkSignupData*/ signup()">Submit</button>
 <!-- </form> -->
     </b-col>
     </div>
@@ -86,7 +86,7 @@ export default {
         console.log(""+this.result)
 
         if(this.result.status==="success"){
-          localStorage.setItem('userDetails', JSON.stringify(this.result));
+          sessionStorage.setItem('userDetails', JSON.stringify(this.result));
           this.$router.push('/landingpage')
         }
         else{
@@ -107,6 +107,7 @@ export default {
           'password':document.getElementById("pswd").value
         }
         this.$store.dispatch('checkLogin',temp);
+        
         console.log("log in result "+this.result.status )
       },
       signup(){
@@ -127,7 +128,7 @@ export default {
         var uname=document.getElementById("username").value;
         var pswd=document.getElementById("pswd").value;
         if(uname.length!=0&&pswd.length!=0){
-          signup();
+          //signup();
         }
         else{
           alert("Invalid");
@@ -141,7 +142,7 @@ export default {
         var number=document.getElementById("PhoneNumber").value;
 
         if(name.length!=0&&email.length!=0&&password.length!=0&&username.length!=0&&number.length!=10){
-          login();
+          //login();
         }
         else{
           alert("Invalid")
