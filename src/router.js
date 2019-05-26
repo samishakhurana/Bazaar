@@ -16,7 +16,7 @@ const router = new Router({
   mode: 'history',
   routes:[
     {
-      name:'landingpage',
+      name:'root',
       path:'/',
       component:LandingPage
     },
@@ -29,7 +29,6 @@ const router = new Router({
     name:'search',
     path:'/search',
     component:Search,
-    //props: true
   },
   {
     name:'profile',

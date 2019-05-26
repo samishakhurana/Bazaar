@@ -33,4 +33,9 @@ export default{
         .then(callback)
         .catch((error)=>{console.log(error)})
     },
+    makeGetRequestwithoutParam(path, callback){
+        axios.get(path)
+        .then(callback)
+        .catch((error)=>{console.log(error)})
+    }
 }

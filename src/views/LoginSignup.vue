@@ -127,7 +127,7 @@ export default {
         var uname=document.getElementById("username").value;
         var pswd=document.getElementById("pswd").value;
         if(uname.length!=0&&pswd.length!=0){
-          signup();
+          this.login();
         }
         else{
           alert("Invalid");
@@ -141,7 +141,7 @@ export default {
         var number=document.getElementById("PhoneNumber").value;
 
         if(name.length!=0&&email.length!=0&&password.length!=0&&username.length!=0&&number.length!=10){
-          login();
+          this.signup();
         }
         else{
           alert("Invalid")

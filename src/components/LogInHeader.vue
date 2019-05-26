@@ -19,7 +19,7 @@
         </b-nav-item>
         <b-nav-form class="spacingSearch">
           <b-form-input size="sm" class="mr-sm-2" placeholder="Search your fav product" v-model="searchtext" ></b-form-input>
-          <b-button size="sm" class="my-2 my-sm-0" type="submit" variant="btn btn-primary" @click="searchByName"><b>Search</b></b-button>
+          <b-button size="sm" class="my-2 my-sm-0" variant="btn btn-primary" @click="searchByName"><b>Search</b></b-button>
         </b-nav-form>
         <div v-if="validate()">
         <b-nav-item >
@@ -49,14 +49,16 @@ export default {
        logoUrl: logo,
        searchtext: '',
        cartLogo: cart_logo,
-       userName: localStorage.getItem('userDetails').name,
+       userName: ''
        //localStorageStatus:window.localStorage.length
      }
   },
   methods: {
     searchByName: function(){
-      let searchtext = this.searchtext;
-      this.$router.push({name: "search", query: {q: searchtext}});
+      console.log("searchtext is "+this.searchtext)
+      this.$router.push({name: "search", query: {q: this.searchtext}});
+      window.location.reload();
+
     },
     navigateToPhone(){
 
@@ -65,8 +67,10 @@ export default {
       this.$router.push({name:'loginsignup'})
     },
     getUserName () {
-      
-      return JSON.parse(localStorage.getItem('userDetails')).payload.uname
+      /*if(localStorage.getItem('userDetails') !== null)
+        return JSON.parse(localStorage.getItem('userDetails')).payload.uname
+      else */
+        return "guest"
     },
     validate(){
       if(window.localStorage.length==0){
@@ -82,6 +86,8 @@ export default {
   },
   created(){
     this.searchtext = this.searchtextprop;
+   /* if(localStorage.getItem("userDetails") !== null)
+      this.userName = localStorage.getItem("userDetails")*/
   }
 }
 </script>

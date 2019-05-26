@@ -30,7 +30,9 @@ export default {
     },
     watch : {
       getSearchProduct: function (newValue, oldValue) {
-        this.prodList = newValue;
+          if(newValue.status == "success"){
+              this.prodList = newValue.payload.prodlist
+          }
       }
     },
     computed : { 

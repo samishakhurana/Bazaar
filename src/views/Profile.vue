@@ -3,11 +3,13 @@
     <LogInHeader/>
     <b-container>
         <b-row class="details-row">
-            <b-col class="details-col">
+            <b-col class="details-col" cols="6">
+                <div v-if="userpayload.userInfo">
                 <h3>Name: {{userpayload.userInfo.name}}</h3>
                 <p>Username: {{userpayload.userInfo.uname}}</p>
                 <p>E-mail: {{userpayload.userInfo.email}}</p>
                 <p>Phone: {{userpayload.userInfo.phoneno}}</p>
+                </div>
                 <div>
                     Addresses:
                     <p v-for="address in userpayload.addressList" v-bind:key="address">
@@ -15,7 +17,7 @@
                     </p>
                 </div>
             </b-col>
-            <b-col>
+            <b-col cols="6">
                 <b-container>
                 <b-row class="details-row" v-for="order in userpayload.orderHistory" v-bind:key="order.ordernumber">
                     <b-col>

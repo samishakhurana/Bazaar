@@ -6,5 +6,7 @@ export default {
     addToCart: '/append'+'/cart/add',
     loginPath:'/user/login',
     signupPath:'/user/signup',
-    getMerchantList:'/merchant/getmerchants'
+    getMerchantList:'/merchant/getmerchants',
+    getCart: '/user/cart/details',
+    deleteFromCart: '/user/cart/delete'
 }
