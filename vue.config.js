@@ -30,7 +30,7 @@ module.exports = {
                 }
             },
             '/append': {
-                target: 'http://localhost:8080',
+                target: 'http://172.16.20.81:8080',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/append': ''
@@ -41,6 +41,20 @@ module.exports = {
                 changeOrigin: true,
                 pathRewrite: {
                     '^/merchant': ''
+                }
+            },
+            '/product':{
+                target: 'http://172.16.20.53:8080/product',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/product': ''
+                }
+            },
+            '/cart':{
+                target:'http://localhost:8080/cart',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/cart': ''
                 }
             }
             

@@ -10,5 +10,8 @@ export default{
     },
     getProfile(callback){
         makeApiCall.makeGetRequest(apiPath.getUserProfile, callback)
+    },
+    getFields(callback){
+        makeApiCall.makeGetRequest(apiPath.getCategoriesList, callback)
     }
 }

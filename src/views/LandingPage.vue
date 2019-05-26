@@ -6,7 +6,7 @@
     
     <div class="product-list">
         <div v-for="item in prodLIST" :key="item.productId">
-            <MinimalProductDesc :title="item.name"  :description="item.subCategory" :productId="item.productId"/>
+            <MinimalProductDesc :title="item.name"  :description="item.subCategory" :productId="item.productId" />
         </div> 
     </div>
     <Footer />
@@ -33,19 +33,22 @@ export default {
     data () {
         return {
            prodLIST: [],
+          
            
         }
     },
     created () {
       console.log('++++', this.$store)
       this.$store.dispatch('fetchProducts')
+      
     },
     mounted () {
 
     },
     computed : { 
        ...mapGetters({
-        getProduct: 'getProducts'
+        getProduct: 'getProducts',
+        
        }) 
     },
     watch : {
@@ -53,6 +56,7 @@ export default {
         this.prodLIST = newValue
         console.log('new value=====', this.prodLIST)
       }
+      
     }
 }
 </script>

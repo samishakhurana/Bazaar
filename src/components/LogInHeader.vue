@@ -11,9 +11,10 @@
         <b-nav-item class="spacingDropDown">
           <div>
             <b-dropdown id="dropdown-1" size="sm" text="Pick your choice" class="m-2" variant="btn btn-primary">
-              <b-dropdown-item >Phone</b-dropdown-item>
-              <b-dropdown-item>Laptop</b-dropdown-item>
-              <b-dropdown-item>Fashion</b-dropdown-item>
+              <div v-for="item in subCategories" :key="item">
+                <button type="button" class="btn btn-light" @click="navigateTo"><b>{{item}}</b></button>
+              <!-- <b-dropdown-item @click="navigateTo()">{{item}}</b-dropdown-item> -->
+              </div>
             </b-dropdown>
           </div>
         </b-nav-item>
@@ -21,13 +22,13 @@
           <b-form-input size="sm" class="mr-sm-2" placeholder="Search your fav product" v-model="searchtext" ></b-form-input>
           <b-button size="sm" class="my-2 my-sm-0" variant="btn btn-primary" @click="searchByName"><b>Search</b></b-button>
         </b-nav-form>
-        <div v-if="validate()">
+       <div v-if="validate()">
         <b-nav-item >
           <b-button variant="btn btn-primary" class="spacingButton" @click="navigateToLoginSignup"><b>Login/Signup</b></b-button>
         </b-nav-item>
         </div>
         <div class="uName" v-else>
-          <h3 class="name">Hi {{getUserName()}}</h3>
+          <h3 class="name">Hi {{userName}}!!</h3>
         </div>
             <b-navbar-brand href="http://localhost:8081/cart" class="spacingImg"><img :src="cartLogo" class="spacingImg"></b-navbar-brand>
       </b-navbar-nav>
@@ -42,6 +43,8 @@
 <script>
 import cart_logo from '../assets/cart_logo.png'
 import logo from "../assets/logo.png"
+import {mapActions, mapGetters} from 'vuex';
+import cartAPI from '../cartAPI/cartAPI.js'; 
 export default {
   name: 'LogInHeader',
   data (){
@@ -49,7 +52,14 @@ export default {
        logoUrl: logo,
        searchtext: '',
        cartLogo: cart_logo,
-       userName: ''
+       userName: JSON.parse(sessionStorage.getItem('userDetails')).payload.name,
+       userpayload:{},
+       subCategories:[],
+       searchByName:()=>{},
+       navigateToLoginSignup:()=>{},
+       navigateTo:()=>{},
+       validate:()=>{},
+       getUserName:()=>{}
        //localStorageStatus:window.localStorage.length
      }
   },
@@ -64,31 +74,52 @@ export default {
 
     },
     navigateToLoginSignup(){
-      this.$router.push({name:'loginsignup'})
+      this.$router.push({name:"loginsignup"});
     },
     getUserName () {
-      /*if(localStorage.getItem('userDetails') !== null)
-        return JSON.parse(localStorage.getItem('userDetails')).payload.uname
-      else */
-        return "guest"
+      return JSON.parse(sessionStorage.getItem('userDetails')).payload.name;
     },
     validate(){
-      if(window.localStorage.length==0){
+      if(window.sessionStorage.length==0){
         return true;
       }
       else{
         return false;
       }
+    },
+    navigateTo(){
+      console.log("in navigation");
     }
+    
   },
   props: {
     searchtextprop: String
   },
   created(){
     this.searchtext = this.searchtextprop;
-   /* if(localStorage.getItem("userDetails") !== null)
-      this.userName = localStorage.getItem("userDetails")*/
-  }
+    this.$store.dispatch('fetchProfile');
+    this.$store.dispatch('getAllSubCategories');
+  },
+  methods: {
+        ...mapActions(['fetchProfile'])
+    },
+    computed : { 
+       ...mapGetters({
+        getUserInfos: 'getUserInfo',
+        getCategories: 'getCategories'
+       }) 
+    },
+    watch : {
+      getUserInfos: function (newValue, oldValue) {
+        if(newValue.status == "success"){
+            this.userpayload = newValue.payload;
+        }
+      },
+      getCategories:function (newValue, oldValue) {
+        this.subCategories = newValue
+        console.log('Categories ', this.subCategories)
+      }
+    }
 }
 </script>
 

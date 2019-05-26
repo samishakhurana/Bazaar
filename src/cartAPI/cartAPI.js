@@ -14,5 +14,9 @@ export default{
     },
     deleteFromCart(callback, obj){
         makeApiCall.makePostRequest(apiPath.deleteFromCart, callback, obj)
+    },
+    getDataFromCart(callback,id){
+        makeApiCall.makeGetRequest(apiPath.getAllProducts, callback, id)
+ 
     }
 }

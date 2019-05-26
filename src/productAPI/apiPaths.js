@@ -3,10 +3,13 @@ export default {
     getUserProfile: '/user/profile', 
     getProductList: '/api' + '/product/gettoprated',
     getSingleProduct: '/info' + '/product/getproduct',
-    addToCart: '/append'+'/cart/add',
+    addToCart: '/user/cart/add',
     loginPath:'/user/login',
     signupPath:'/user/signup',
     getMerchantList:'/merchant/getmerchants',
     getCart: '/user/cart/details',
-    deleteFromCart: '/user/cart/delete'
+    deleteFromCart: '/user/cart/delete',
+    getCategoriesList:'/product/getallsubcategories',
+    payment: '/user/order/buy',
+    getAllProducts: '/cart/details'
 }

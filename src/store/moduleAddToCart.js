@@ -17,8 +17,13 @@ export default {
         addToCart: (context, obj) => {
             console.log('context', context, 'obj', obj)
             cartAPI.addToCart((result) => {
-                context.commit('setResult',result)
+                context.commit('setResult',result.data)
             },obj)
+        },
+        dataFromCart:(context,id)=>{
+            cartAPI.getDataFromCart((result)=>{
+                context.commit('setResult',result.data)
+            },id)
         }
     }
  }
