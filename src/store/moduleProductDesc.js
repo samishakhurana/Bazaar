@@ -3,7 +3,7 @@ import cartAPI from '../cartAPI/cartAPI.js';
 export default {
     state: {
         data: '',
-        multidata: []
+        multidata: {}
     },
     getters: {
         getProduct: (state) => state.data
@@ -24,10 +24,5 @@ export default {
                 context.commit('SET_DATA',result)
             },id)
         },
-        fetchMultipleProduct: (context, id) => {
-            cartAPI.getSingleProduct((result) => {
-                context.commit('ADD_DATA',result)
-            },id)
-        }
     }
  }

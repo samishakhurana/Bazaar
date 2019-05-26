@@ -10,7 +10,7 @@ export default{
         .then(callback)
         .catch((error)=>{console.log(error)})
     },
-    makeGetRequestwithParam(path, query,callback){
+    makeGetRequestwithParam(path, query, callback){
         axios.get(path, {
             params: {
                 "text": query
