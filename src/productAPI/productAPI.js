@@ -13,5 +13,8 @@ export default{
     },
     getFields(callback){
         makeApiCall.makeGetRequest(apiPath.getCategoriesList, callback)
+    },
+    getSubCategoryProducts(callback,name){
+        makeApiCall.makeGetRequestwithParamProd(apiPath.getProdFromSubCat,callback,name)
     }
 }

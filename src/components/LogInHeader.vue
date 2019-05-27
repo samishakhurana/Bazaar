@@ -57,7 +57,8 @@ export default {
        cartLogo: cart_logo,
        userName: '', 
        userpayload:{},
-       subCategories:[]
+       subCategories:[],
+       subCatProd:[]
      }
   },
   methods: {
@@ -102,7 +103,8 @@ export default {
   computed : { 
        ...mapGetters({
         getUserInfos: 'getUserInfo',
-        getCategories: 'getCategories'
+        getCategories: 'getCategories',
+        getproductsFromCategories: 'getproductsFromCategories'
        }),
        ...mapActions(['fetchProfile']) 
   },
@@ -115,6 +117,10 @@ export default {
       getCategories:function (newValue, oldValue) {
         this.subCategories = newValue
         console.log('Categories ', this.subCategories)
+      },
+      getproductsFromCategories: function(newValue, oldValue){
+        this.subCatProd = newValue
+        console.log('Product from Categories ', this.subCatProd)
       }
     }
 }

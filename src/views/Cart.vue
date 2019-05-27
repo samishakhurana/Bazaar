@@ -3,7 +3,7 @@
         <b-container class="cdata">
             <b-row v-for="item in cartlist" v-bind:key="item.mId" >
                 <!-- <div v-if="check(item)"> -->
-                <b-col><img :src="item.imgurl" alt="product image"></b-col>
+                <b-col><img :src="item.imgurl" alt="product image" id="cartImage"></b-col>
                 <b-col>
                     <p>{{item.productname}}</p>
                     <p>Quantity: {{item.quantity}}</p>
@@ -86,6 +86,11 @@ export default {
 <style>
 .cdata{
     padding: 20px;
+}
+
+.cartImage{
+    height: 200px;
+    width: 200px;
 }
 </style>
 

@@ -7,12 +7,15 @@ export default {
     },
     getters: {
         getCategories: (state) => state.categories,
-        productsFromCategories:(state)=>state.productsFromCategories
+        getproductsFromCategories:(state)=>state.productsFromCategories
         
     },
     mutations: {
         SET_CATEGORIES: (state,result) => {
             state.categories = result
+        },
+        SET_PRODUCTSFROMCATEGORIES:(state)=>{
+            state.productsFromCategories = result
         }
         
     },
@@ -24,8 +27,8 @@ export default {
         },
         getProductsBySubCategory:(context,catname)=>{
             productAPI.getSubCategoryProducts((result)=>{
-                context.commit('')
-            })
-        }
+              context.commit('SET_PRODUCTSFROMCATEGORIES',result.data)
+        },catname)
     }
  }
+}
