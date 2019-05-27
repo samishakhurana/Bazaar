@@ -60,6 +60,10 @@ const router = new Router({
     name:'cart',
     path:'/mycart',
     component:CartPage
+  },
+  {
+    path:'*',
+    redirect: '/'
   }
 ]
 })

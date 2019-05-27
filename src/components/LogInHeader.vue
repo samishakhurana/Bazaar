@@ -18,10 +18,11 @@
             </b-dropdown>
           </div>
         </b-nav-item>
-        <b-nav-form class="spacingSearch">
-          <b-form-input size="sm" class="mr-sm-2" placeholder="Search your fav product" v-model="searchtext" ></b-form-input>
+        <div class="spacingSearch">
+          <input v-model="searchtext" v-on:keyup.enter="searchByName">
+          <!-- <b-form-input size="sm" class="mr-sm-2" placeholder="Search your fav product" v-model="searchtext" ></b-form-input> -->
           <b-button size="sm" class="my-2 my-sm-0" variant="btn btn-primary" @click="searchByName"><b>Search</b></b-button>
-        </b-nav-form>
+        </div>
        <div v-if="validate()">
         <b-nav-item >
           <b-button variant="btn btn-primary" class="spacingButton" @click="navigateToLoginSignup"><b>Login/Signup</b></b-button>
@@ -65,7 +66,6 @@ export default {
     searchByName (){
       console.log("searchtext is "+this.searchtext)
       this.$router.push({name: "search", query: {q: this.searchtext}});
-      window.location.reload();
     },
     navigateToLoginSignup(){
       this.$router.push({name:"loginsignup"});

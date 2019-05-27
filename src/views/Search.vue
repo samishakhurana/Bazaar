@@ -28,6 +28,12 @@ export default {
         this.$store.dispatch('fetchSearchProducts', this.$route.query.q);
     },
     watch : {
+     '$route' (to, from) {
+      // react to route changes...
+      console.log('******to', to)
+      console.log('******from', from)
+      this.$store.dispatch('fetchSearchProducts', to.query.q);
+      },
       getSearchProduct: function (newValue, oldValue) {
           if(newValue.status == "success"){
               this.prodList = newValue.payload.prodlist
