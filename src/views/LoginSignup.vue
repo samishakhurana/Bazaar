@@ -95,11 +95,12 @@ export default {
       },
       getStatus: function(newValue,oldValue){
         this.userStatus=newValue
-        console.log(newValue+" ")
+        //console.log(newValue+" ")
         console.log(this.userStatus.status+" --- sign up status")
-        console.log(""+this.userStatus)
+        //console.log(""+this.userStatus)
 
         if(this.userStatus.status==="success"){
+          console.log("sign up is here ",this.userStatus);
           sessionStorage.setItem('userDetails', JSON.stringify(this.userStatus));
           this.$router.push('/landingpage')
         }
@@ -132,7 +133,7 @@ export default {
         }
         console.log(temp.uname+temp.password);
         this.$store.dispatch('addUser',temp);
-        this.$router.push({name:'landingpage'})
+        //console.log("sign up result "+this.userStatus.result)
       },
       checkSigninData(){
         var uname=document.getElementById("username").value;
