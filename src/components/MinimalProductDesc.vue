@@ -50,11 +50,13 @@ export default {
     },
     methods:{
         navigateTo(){
-            this.$router.push('/productdetails'+ '?id=' + this.productId)
+            this.$router.push('/productdetails/' + this.productId)
         }
     },
     created(){
+        //if(productData!=null){
         this.imgsrc=this.productData.imageUrl[1]
+        //}
     }
 }
 </script>

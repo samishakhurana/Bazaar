@@ -108,7 +108,7 @@ export default {
        }),
        ...mapActions(['fetchProfile']) 
   },
-  watch : {
+  watch : { 
       getUserInfos: function (newValue, oldValue) {
         if(newValue.status == "success"){
             this.userpayload = newValue.payload;
@@ -119,6 +119,7 @@ export default {
         console.log('Categories ', this.subCategories)
       },
       getproductsFromCategories: function(newValue, oldValue){
+        console.log("in watch");
         this.subCatProd = newValue
         console.log('Product from Categories ', this.subCatProd)
       }

@@ -14,6 +14,7 @@ Vue.use(Router)
 
 const router = new Router({
   mode: 'history',
+  base: '/bazaar',
   routes:[
     {
       name:'root',
@@ -48,7 +49,7 @@ const router = new Router({
   },
   {
     name:'productdetails',
-    path:'/productdetails', 
+    path:'/productdetails/:id', 
     component: ProductDetails
   },
   {
