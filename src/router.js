@@ -49,7 +49,7 @@ const router = new Router({
   {
     name:'productdetails',
     path:'/productdetails', 
-    component:ProductDetails
+    component: ProductDetails
   },
   {
     name:'paymentpage',
@@ -58,7 +58,7 @@ const router = new Router({
   },
   {
     name:'cart',
-    path:'/cart',
+    path:'/mycart',
     component:CartPage
   }
 ]

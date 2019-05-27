@@ -1,12 +1,12 @@
 <template>
 <div>
     <LogInHeader />
-    <SlideShow />
+    <img src="https://neilpatel.com/wp-content/uploads/2015/04/ecommerce.jpg" class="mainImage">
     <!-- <h2>:imageUrl="item.imageUrl[1]"</h2> -->
-    
+    <h2>Our Best Sellers</h2>
     <div class="product-list">
         <div v-for="item in prodLIST" :key="item.productId">
-            <MinimalProductDesc :title="item.name"  :description="item.subCategory" :productId="item.productId" />
+            <MinimalProductDesc :title="item.name"  :description="item.subCategory" :productId="item.productId" :productData="item"/>
         </div> 
     </div>
     <Footer />
@@ -65,6 +65,12 @@ export default {
       display: flex;
       flex-wrap: wrap;
       padding: 0px 90px
+  }
+
+  .mainImage{
+    padding: 30px;
+    height:400px;
+    width: 100%;
   }
 </style>
 

@@ -25,8 +25,9 @@ export default {
         },
         delFromCart: (context, item) => {
             cartAPI.deleteFromCart((result) => {
-                console.log("result of deletion " + result.data);
+                console.log("result of deletion " , result.data);
                 if(result.data == "success")
+                    console.log("here");
                     context.commit('setDelData', item)
             }, item)
         }
