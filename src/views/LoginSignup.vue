@@ -88,6 +88,7 @@ export default {
         if(this.result.status==="success"){
           sessionStorage.setItem('userDetails', JSON.stringify(this.result));
           this.$router.push('/landingpage')
+          window.location.reload()
         }
         else{
           console.log("fail");
@@ -102,6 +103,7 @@ export default {
         if(this.userStatus.status==="success"){
           sessionStorage.setItem('userDetails', JSON.stringify(this.userStatus));
           this.$router.push('/landingpage')
+          window.location.reload();
         }
         else{
           console.log("fail");

@@ -29,6 +29,7 @@
         </div>
         <div class="uName" v-else>
           <b-button size="sm" class="my-2 my-sm-0 name" variant="btn btn-primary" @click="profileView" ><h3>Hi {{userName}}!!!</h3></b-button>
+          <b-button size="sm" class="my-2 my-sm-0 name" variant="btn btn-primary" @click="logout" ><h3>Logout</h3></b-button>
         </div>
         <router-link to="/mycart">
            <b-navbar-brand class="spacingImg"><img :src="cartLogo" class="spacingImg"></b-navbar-brand>
@@ -82,8 +83,12 @@ export default {
     },
     profileView(){
       this.$router.push({name:"profile"})
+    },
+    logout(){
+      window.sessionStorage.removeItem('userDetails')
+      this.$router.push({name: "landingpage"});
+      window.location.reload();
     }
-    
   },
   props: {
   },

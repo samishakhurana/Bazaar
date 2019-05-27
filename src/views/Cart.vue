@@ -46,16 +46,6 @@ export default {
 
             
         },
-        check(item){
-            for(var i=0;i<this.deletedCart.length;i++){
-                if(this.deletedCart[i]==item){
-                    return false;
-                }
-                
-            }
-            return true;
-
-        },
         buyNow(){
             this.$router.push({name:"paymentpage"});
         }
@@ -64,7 +54,17 @@ export default {
        ...mapGetters({
         getCartInfo: 'getCartInfo',
         getDelInfo: 'getDelInfo'
-       }) 
+       }),
+       check(item){
+            for(var i=0;i<this.deletedCart.length;i++){
+                if(this.deletedCart[i]==item){
+                    return false;
+                }
+                
+            }
+            return true;
+
+        }, 
     },
     watch : {
       getCartInfo: function (newValue, oldValue) {
