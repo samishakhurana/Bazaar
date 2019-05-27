@@ -1,6 +1,5 @@
 <template>
     <div>
-        <LogInHeader/>
         <b-container>
             <b-row v-for="item in cartlist" v-bind:key="item">
                 <b-col><img :src="item.imgurl" alt="product image"></b-col>

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <LogInHeader/>
     <div>
       <div class="container">
 		<div class="card">

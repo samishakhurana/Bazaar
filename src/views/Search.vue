@@ -1,6 +1,5 @@
 <template>
 <div>
-    <LogInHeader :searchtextprop="this.textvalue"/>
     <b-container class="product-container">
         <div v-for="item in prodList" :key="item.id">
             <SearchProductDesc :productdata="item"/>

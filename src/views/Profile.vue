@@ -1,6 +1,5 @@
 <template>
 <div>
-    <LogInHeader/>
     <b-container>
         <b-row class="details-row">
             <b-col class="details-col" cols="6">

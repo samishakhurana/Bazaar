@@ -52,32 +52,24 @@ export default {
        logoUrl: logo,
        searchtext: '',
        cartLogo: cart_logo,
-       userName: JSON.parse(sessionStorage.getItem('userDetails')).payload.name,
+       userName: '', 
        userpayload:{},
        subCategories:[],
-       searchByName:()=>{},
-       navigateToLoginSignup:()=>{},
-       navigateTo:()=>{},
-       validate:()=>{},
-       getUserName:()=>{}
+       //getUserName:()=>{}
        //localStorageStatus:window.localStorage.length
      }
   },
   methods: {
-    searchByName: function(){
+    searchByName (){
       console.log("searchtext is "+this.searchtext)
       this.$router.push({name: "search", query: {q: this.searchtext}});
-      window.location.reload();
-
+       window.location.reload();
     },
     navigateToPhone(){
 
     },
     navigateToLoginSignup(){
       this.$router.push({name:"loginsignup"});
-    },
-    getUserName () {
-      return JSON.parse(sessionStorage.getItem('userDetails')).payload.name;
     },
     validate(){
       if(window.sessionStorage.length==0){
@@ -93,23 +85,22 @@ export default {
     
   },
   props: {
-    searchtextprop: String
   },
   created(){
-    this.searchtext = this.searchtextprop;
     this.$store.dispatch('fetchProfile');
     this.$store.dispatch('getAllSubCategories');
+    if(sessionStorage.getItem('userDetails')){
+        this.userName = JSON.parse(sessionStorage.getItem('userDetails')).payload.name
+    }
   },
-  methods: {
-        ...mapActions(['fetchProfile'])
-    },
-    computed : { 
+  computed : { 
        ...mapGetters({
         getUserInfos: 'getUserInfo',
         getCategories: 'getCategories'
-       }) 
-    },
-    watch : {
+       }),
+       ...mapActions(['fetchProfile']) 
+  },
+  watch : {
       getUserInfos: function (newValue, oldValue) {
         if(newValue.status == "success"){
             this.userpayload = newValue.payload;

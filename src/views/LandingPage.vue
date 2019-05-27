@@ -1,6 +1,5 @@
 <template>
 <div>
-    <LogInHeader />
     <SlideShow />
     <!-- <h2>:imageUrl="item.imageUrl[1]"</h2> -->
     

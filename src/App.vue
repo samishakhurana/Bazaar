@@ -4,9 +4,19 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
+    <LogInHeader />
     <router-view/>
   </div>
 </template>
+<script>
+ import LogInHeader from './components/LogInHeader.vue';
+ export default {
+   name: 'App',
+   components: {
+     LogInHeader
+   }
+ }
+</script>
 
 <style>
 #app {
