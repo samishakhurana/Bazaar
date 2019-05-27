@@ -15,7 +15,7 @@
     >
 
     <b-carousel-slide
-        img-src="https://picsum.photos/1024/480/?image=52"
+        img-src="https://images.unsplash.com/photo-1544104210-0e4941d251a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
       ></b-carousel-slide>
       <b-carousel-slide
         img-src="https://picsum.photos/1024/480/?image=52"
@@ -56,7 +56,10 @@ export default {
 </script>
 
 <style>
-
+  b-carousel-slide{
+    height: 100px;
+    width: 100%;
+  }
 </style>
 
 

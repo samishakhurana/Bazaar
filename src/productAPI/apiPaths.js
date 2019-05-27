@@ -9,7 +9,7 @@ export default {
     getMerchantList:'/merchant/getmerchants',
     getCart: '/user/cart/details',
     deleteFromCart: '/user/cart/delete',
-    getCategoriesList:'/product/getallsubcategories',
+    getCategoriesList:'/prd/product/getallsubcategories',
     payment: '/user/order/buy',
-    getAllProducts: '/cart/details'
+    //getAllProducts: '/cart/details'
 }

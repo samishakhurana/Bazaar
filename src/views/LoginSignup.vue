@@ -96,6 +96,16 @@ export default {
       getStatus: function(newValue,oldValue){
         this.userStatus=newValue
         console.log(newValue+" ")
+        console.log(this.userStatus.status+" --- sign up status")
+        console.log(""+this.userStatus)
+
+        if(this.userStatus.status==="success"){
+          sessionStorage.setItem('userDetails', JSON.stringify(this.userStatus));
+          this.$router.push('/landingpage')
+        }
+        else{
+          console.log("fail");
+        }
       }
 
     },

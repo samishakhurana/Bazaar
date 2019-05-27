@@ -2,10 +2,12 @@ import productAPI from '../productAPI/productAPI.js';
 
 export default {
     state: {
-        categories: []
+        categories: [],
+        productsFromCategories: []
     },
     getters: {
-        getCategories: (state) => state.categories
+        getCategories: (state) => state.categories,
+        productsFromCategories:(state)=>state.productsFromCategories
         
     },
     mutations: {
@@ -18,6 +20,11 @@ export default {
         getAllSubCategories: (context) => {
             productAPI.getFields((result) => {
                 context.commit('SET_CATEGORIES',result.data)
+            })
+        },
+        getProductsBySubCategory:(context,catname)=>{
+            productAPI.getSubCategoryProducts((result)=>{
+                context.commit('')
             })
         }
     }

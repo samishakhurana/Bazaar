@@ -31,10 +31,12 @@ export default {
     created(){
         var id=JSON.parse(sessionStorage.getItem('userDetails')).payload.uid;
         console.log(id);
-        this.$store.dispatch('dataFromCart',id);
+        this.$store.dispatch('fetchCart');
     },
     methods:{
+        
         payment(){
+            console.log("result of cart ",this.cartData)
             this.uDetails=JSON.parse(sessionStorage.getItem('userDetails')).payload;
             var temp={
                 'orderdate':"2012-04-23T18:25:43.511+0000",
@@ -46,7 +48,7 @@ export default {
                 'productlist':this.cartData
             }
             console.log(temp);
-            //this.$store.dispatch('doPayment',temp);
+            this.$store.dispatch('doPayment',temp);
         }
     },
     computed:{

@@ -1,4 +1,6 @@
 <template>
+<div @click="gotoproduct">
+    
     <b-row class="product-row">
         <b-col cols="3">
             <b-img class="product-image" v-bind:src="this.imgsrc" alt="Responsive image"></b-img>
@@ -10,7 +12,9 @@
             <p>Rating: {{this.productdata.rating}}</p>
             <p>Status: <span v-if="this.productdata.avilable">Available</span> <span v-else>Out of Stock</span></p>
         </b-col>
-    </b-row>       
+    </b-row>  
+
+</div>     
 </template>
 
 <script>
@@ -33,6 +37,10 @@ export default {
     methods:{
         navigateTo(){
             this.$router.push({name:'productdetails'})
+        },
+        gotoproduct(){
+            console.log(this.productdata);
+            this.$router.push('/productdetails'+ '?id=' + this.productdata.id)
         }
     }
 }

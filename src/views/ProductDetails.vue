@@ -50,6 +50,7 @@
             <div v-for="item in Object.keys(this.product.productAttribute)" :key="item">
                   <h4>{{item}}: <span>{{product.productAttribute[item]}}</span> </h4>            
             </div>
+            
           </div>
             <div class="quantity">
       <button class="plus-btn" type="button" name="button" @click="addQuant">
@@ -61,7 +62,7 @@
       </button>
     </div>
             <b-button variant="primary" id="addToCart" @click="addDataToCart">Add To Cart</b-button>
-            <b-button variant="primary" @click="buyNow">Buy Now</b-button>
+            
             </div>
 				</div>
 			</div>
@@ -82,7 +83,7 @@ import apiPath from '../productAPI/apiPaths';
 import makeApiCall from '../productAPI/makeAPICall';
 
 export default {
-  name: "ProductDetails",
+  name: 'ProductDetails',
   data(){
     return{
       plus_sign:plus,
@@ -119,15 +120,12 @@ export default {
     } 
   },
   created(){
-    console.log(this.$route.query)
+    console.log('&&&&', this.$route.query)
     console.log('productDetails', this.$store)
-    this.$store.dispatch('fetchSingleProduct', this.$route.query)
+    /this.$store.dispatch('fetchSingleProduct', this.$route.query)
     //this.$store.dispatch('getMerchantDetails', this.$route.query)
     let self = this;
-    makeApiCall.makeGetRequestwithParamMerch(apiPath.getMerchantList, (result)=>{self.merchantData = result.data;},this.$route.query)
-
-  },
-  mounted () {
+     makeApiCall.makeGetRequestwithParamMerch(apiPath.getMerchantList, (result)=>{self.merchantData = result.data;},this.$route.query)
 
   },
     computed : { 
@@ -216,7 +214,7 @@ template{
    #pImage{
      padding-top: 50px;
      height: 500px;
-     width: 300px
+     width: 450px
    }
 
    .preview {

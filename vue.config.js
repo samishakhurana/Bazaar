@@ -1,5 +1,6 @@
 module.exports = {
     devServer:{
+        port: 9000,
         proxy: {
             '/api': {
                 target: 'http://172.16.20.53:8080',
@@ -43,22 +44,20 @@ module.exports = {
                     '^/merchant': ''
                 }
             },
-            '/product':{
-                target: 'http://172.16.20.53:8080/product',
+            '/prd':{
+                target: 'http://172.16.20.53:8080',
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/product': ''
+                    '^/prd': ''
                 }
             },
-            '/cart':{
-                target:'http://localhost:8080/cart',
+           /* '/cart':{
+                target:'http://172.16.20.81:8080/user/cart',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/cart': ''
                 }
-            }
-            
-            
+            } */  
         }
     }
   }
