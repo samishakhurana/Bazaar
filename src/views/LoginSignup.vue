@@ -18,7 +18,7 @@
     <input type="password" class="form-control" id="pswd" placeholder="Enter Password" required>
   </div>
   
-  <button type="submit" class="btn btn-light" @click="/*checkSigninData*/ login()">Submit</button>
+  <button type="submit" class="btn btn-light" @click="checkSigninData() /*login()*/">Submit</button>
     </b-col>
     </div>
 
@@ -51,7 +51,7 @@
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Terms and Conditions</label>
   </div>
-  <button type="submit" class="btn btn-light" @click="/*checkSignupData*/ signup()">Submit</button>
+  <button type="submit" class="btn btn-light" @click="checkSignupData() /*signup()*/">Submit</button>
 <!-- </form> -->
     </b-col>
     </div>
@@ -153,6 +153,8 @@ export default {
         var password=document.getElementById("InputPassword").value;
         var username=document.getElementById("InputUsername").value;
         var number=document.getElementById("PhoneNumber").value;
+
+        console.log(number.length+" length of number ");
 
         if(name.length!=0&&email.length!=0&&password.length!=0&&username.length!=0&&number.length!=10){
           this.signup();

@@ -27,7 +27,7 @@ export default {
         },
         getProductsBySubCategory:(context,catname)=>{
             productAPI.getSubCategoryProducts((result)=>{
-              context.commit('SET_PRODUCTSFROMCATEGORIES',result.data)
+              context.commit('SET_PRODUCTSFROMCATEGORIES',result)
         },catname)
     }
  }

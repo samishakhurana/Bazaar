@@ -4,7 +4,7 @@ export default{
     makeGetRequest(path,callback, params){
         let query = ''
         if(params) {
-            query = '?id='+params.id
+            query = '?id='+params
         }
         axios.get(path+query)
         .then(callback)
@@ -27,7 +27,7 @@ export default{
     makeGetRequestwithParamMerch(path,callback,params_in){
         axios.get(path, {
             params: {
-                "pId": params_in.id
+                "pId": params_in
             }
         })
         .then(callback)

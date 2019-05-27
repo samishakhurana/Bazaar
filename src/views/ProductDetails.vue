@@ -13,7 +13,7 @@
 					</div>
 					<div class="col-md-6 merch">
 						<h3 id="mText">Get your favourite product from your favourite Merchant</h3>
-            <div class="table-responsive">
+            <div class="table-responsive"  v-if="Array.isArray(merchantData)">
               <table class="table">
                 <tr>
                   <th scope="col">Name</th>
@@ -22,9 +22,8 @@
                   <th scope="col">Availability</th>
                   <th scope="col"></th>
                 </tr>
-                <!-- <div v-for="item in merchantData" :key="item"> -->
-                  
-                <tr v-for="item1 in merchantData" :key="item1.mId">
+                <!-- <div v-for="item in merchantData" :key="item"> --> 
+                  <tr v-for="item1 in merchantData" :key="item1.mId">
                   <td scope="row" >{{item1.mname}}</td>
                   <td scope="row" >{{item1.mrating}}</td>
                   <td scope="row" >{{item1.price}}</td>
@@ -38,6 +37,7 @@
                     </div>
                   </td>
                 </tr>
+                
                 
                 <!-- </div> -->
               </table>
@@ -122,10 +122,10 @@ export default {
   created(){
     console.log('&&&&', this.$route.query)
     console.log('productDetails', this.$store)
-    /this.$store.dispatch('fetchSingleProduct', this.$route.query)
+    /this.$store.dispatch('fetchSingleProduct', this.$route.params.id)
     //this.$store.dispatch('getMerchantDetails', this.$route.query)
     let self = this;
-     makeApiCall.makeGetRequestwithParamMerch(apiPath.getMerchantList, (result)=>{self.merchantData = result.data;},this.$route.query)
+     makeApiCall.makeGetRequestwithParamMerch(apiPath.getMerchantList, (result)=>{self.merchantData = result.data;},this.$route.params.id)
 
   },
     computed : { 
