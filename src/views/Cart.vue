@@ -42,12 +42,20 @@ export default {
     methods: {
         ...mapActions(['fetchCart']),
         deleteFromCart: function(item){
-            this.$store.dispatch('delFromCart', item); 
-
-            
+            this.$store.dispatch('delFromCart', {payload: item, success: this.itemDeleted});     
         },
         buyNow(){
             this.$router.push({name:"paymentpage"});
+        },
+        itemDeleted(item) {
+         console.log('itemDeleted', item)
+         this.cartlist.forEach((el,index)=>{
+             if(item.productId === el.productId) {
+                          console.log('itemDeleted', item)
+
+                this.cartlist.splice(index, 1)
+             }
+         })
         }
     },
     computed : { 
@@ -88,7 +96,7 @@ export default {
     padding: 20px;
 }
 
-.cartImage{
+#cartImage{
     height: 200px;
     width: 200px;
 }
