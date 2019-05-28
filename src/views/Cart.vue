@@ -1,8 +1,8 @@
 <template>
     <div>
         <b-container class="cdata">
-            <b-row v-for="item in cartlist" v-bind:key="item.mId" >
-                <!-- <div v-if="check(item)"> -->
+            <b-row v-for="item in cartlist" v-bind:key="item.mId">
+                <div v-if="check(item)">
                 <b-col><img :src="item.imgurl" alt="product image" id="cartImage"></b-col>
                 <b-col>
                     <p>{{item.productname}}</p>
@@ -11,7 +11,7 @@
                     <button @click="deleteFromCart(item)">Delete</button>
                     <hr>
                 </b-col>
-                <!-- </div> -->
+                </div>
             </b-row>
         </b-container>
         <b-button variant="primary" @click="buyNow">Buy Now</b-button>
@@ -43,8 +43,7 @@ export default {
         ...mapActions(['fetchCart']),
         deleteFromCart: function(item){
             this.$store.dispatch('delFromCart', item); 
-
-            
+            this.deletedCart.push(item);            
         },
         buyNow(){
             this.$router.push({name:"paymentpage"});
@@ -88,7 +87,7 @@ export default {
     padding: 20px;
 }
 
-.cartImage{
+#cartImage{
     height: 200px;
     width: 200px;
 }
