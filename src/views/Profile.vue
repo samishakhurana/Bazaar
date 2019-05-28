@@ -83,8 +83,8 @@ export default {
     margin-top: 40px;
 }
 .prod-image {
-    height: 400px;
-    width: 400px;
+    height: 300px;
+    width: 300px;
 }
 </style>
 

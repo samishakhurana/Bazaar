@@ -33,8 +33,7 @@ export default {
             cartData:[],
             id:0,
             email:"",
-            totalamount: Number
-           
+            totalamount: 0
         }
     },
     created(){
@@ -84,9 +83,11 @@ export default {
       getCartInfo:function(newValue, oldValue){
           this.cartData=newValue.payload.list
           console.log('Content from cart',this.cartData)
-            for(let i = 0; i < this.cartdata; i++){
-                totalamount += (this.cartdata[i].price)*(this.cartdata[i].quantity)
+            for(let i = 0; i < this.cartData.length; i++){
+                this.totalamount += (this.cartData[i].price)*(this.cartData[i].quantity)
+                console.log("cart data "+i+" "+this.cartData[i])
             }
+            console.log("totalamount" + this.totalamount)
       }
     }
 }
