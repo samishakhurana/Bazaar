@@ -32,8 +32,8 @@
                     <div v-else>Out of Stock</div>
                   </td> 
                   <td >
-                    <div class="checkbox">
-                      <label><input type="checkbox" v-on:click="storeId(item1.mId,item1.price);count++;"/></label>
+                    <div class="radio">
+                      <label><input type="radio" name="merchant" v-on:click="storeId(item1.mId,item1.price);count++;"/></label>
                     </div>
                   </td>
                 </tr>
@@ -165,6 +165,7 @@ export default {
           'imgurl':this.product.imageUrl["1"],
           'price':this.selectedMerchantPrice
         }
+        this.guestCart=JSON.parse(localStorage.getItem('guestCarts'))
         this.guestCart.push(temp);
         console.log(this.guestCart)
         if(window.sessionStorage.length==0){
