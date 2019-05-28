@@ -2,8 +2,8 @@
 <div>
     <h2>Just one more step and your favourite products are yours!!</h2>
     <div class="center-div">
-        <div v-if="check">
-        <label>Enter your email</label><br>
+        <div v-if="check()">
+        <label>Enter your emailsss</label><br>
         <input type="text" name="email" :placeholder="email"/><br>
         </div>
         <div v-else>
@@ -37,9 +37,10 @@ export default {
         }
     },
     created(){
-        if(window.sessionStorage.length!=0)
+        if(window.sessionStorage.length!=0){
         var id=JSON.parse(sessionStorage.getItem('userDetails')).payload.uid;
         var email=JSON.parse(sessionStorage.getItem('userDetails')).payload.email;
+        }
         console.log(id);
         this.$store.dispatch('fetchCart');
     },
@@ -61,6 +62,7 @@ export default {
             this.$store.dispatch('doPayment',temp);
         },
         check(){
+            console.log("here in check");
             if(window.sessionStorage.length==0){
                 return false;
             }

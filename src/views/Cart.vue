@@ -44,11 +44,20 @@ export default {
         ...mapActions(['fetchCart']),
         deleteFromCart: function(item){
             item.accesstoken = sessionStorage.getItem("userAccessToken")? sessionStorage.getItem("userAccessToken"): null
-            this.$store.dispatch('delFromCart', item); 
-            this.deletedCart.push(item);            
+            this.$store.dispatch('delFromCart', {payload: item, success: this.itemDeleted});     
         },
         buyNow(){
             this.$router.push({name:"paymentpage"});
+        },
+        itemDeleted(item) {
+         console.log('itemDeleted', item)
+         this.cartlist.forEach((el,index)=>{
+             if(item.productId === el.productId) {
+                          console.log('itemDeleted', item)
+
+                this.cartlist.splice(index, 1)
+             }
+         })
         }
     },
     computed : { 

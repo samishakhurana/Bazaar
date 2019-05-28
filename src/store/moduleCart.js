@@ -24,13 +24,14 @@ export default {
                 context.commit('setCartData',result.data)
             }, {"accesstoken": token})
         },
-        delFromCart: (context, item) => {
+        delFromCart: (context, {payload, success}) => {
             cartAPI.deleteFromCart((result) => {
                 console.log("result of deletion " , result.data);
                 if(result.data == "success")
                     console.log("here");
-                    context.commit('setDelData', item)
-            }, item)
+                    success(payload)
+                    context.commit('setDelData', payload)
+            }, payload)
         }
     }
  }
