@@ -54,9 +54,9 @@ export default {
         }
     },
     created(){
-        //if(productData!=null){
+        
         this.imgsrc=this.productData.imageUrl[1]
-        //}
+        
     }
 }
 </script>

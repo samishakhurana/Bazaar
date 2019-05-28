@@ -94,7 +94,8 @@ export default {
       selectedMerchantId:0,
       selectedMerchantPrice:0,
       count:0,
-      storeId:()=>{}
+      storeId:()=>{},
+      guestCart:[]
     }
   },
   methods:{
@@ -122,7 +123,7 @@ export default {
   created(){
     console.log('&&&&', this.$route.query)
     console.log('productDetails', this.$store)
-    /this.$store.dispatch('fetchSingleProduct', this.$route.params.id)
+    this.$store.dispatch('fetchSingleProduct', this.$route.params.id)
     //this.$store.dispatch('getMerchantDetails', this.$route.query)
     let self = this;
      makeApiCall.makeGetRequestwithParamMerch(apiPath.getMerchantList, (result)=>{self.merchantData = result.data;},this.$route.params.id)
@@ -154,9 +155,8 @@ export default {
       
     },
     methods: {
+      
       addDataToCart(){
-        var merchantObj;
-        console.log("in add to cart");
         var temp={
           'productId':parseInt(this.product.productId),
           'quantity':parseInt(document.getElementById("quant").value),
@@ -165,9 +165,19 @@ export default {
           'imgurl':this.product.imageUrl["1"],
           'price':this.selectedMerchantPrice
         }
-        //console.log("=====")
+        this.guestCart.push(temp);
+        console.log(this.guestCart)
+        if(window.sessionStorage.length==0){
+          console.log("in guest user ");
+          console.log(temp);
+          localStorage.setItem('guestCarts', JSON.stringify(this.guestCart));
+        }
+        else{
+        var merchantObj;
+        console.log("in add to cart");
         console.log(temp);
         this.$store.dispatch('addToCart', temp);
+        }
           
       },
       // ...mapActions(['getSingleProduct']),

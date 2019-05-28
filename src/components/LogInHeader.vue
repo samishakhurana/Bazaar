@@ -74,7 +74,10 @@ export default {
     
     navigateTo(e){
       console.log("in navigation", e.target.text);
-      this.$store.dispatch('getProductsBySubCategory',e.target.text);
+      var name=e.target.text;
+      console.log(name+'   name of category')
+      this.$router.push('/productview/'+name);
+      //this.$store.dispatch('getProductsBySubCategory',e.target.text);
     },
     profileView(){
       this.$router.push({name:"profile"})
@@ -115,11 +118,6 @@ export default {
       getCategories:function (newValue, oldValue) {
         this.subCategories = newValue
         console.log('Categories ', this.subCategories)
-      },
-      getproductsFromCategories: function(newValue, oldValue){
-        console.log("in watch");
-        this.subCatProd = newValue
-        console.log('Product from Categories ', this.subCatProd)
       },
       getLogoutResult: function(newValue, oldValue){
         if(newValue.status == "success"){
