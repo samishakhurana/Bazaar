@@ -87,6 +87,7 @@ export default {
 
         if(this.result.status==="success"){
           sessionStorage.setItem('userDetails', JSON.stringify(this.result));
+          sessionStorage.setItem('userAccessToken', this.result.accesstoken);
           this.$router.push('/landingpage')
           window.location.reload();
         }
@@ -103,6 +104,7 @@ export default {
         if(this.userStatus.status==="success"){
           console.log("sign up is here ",this.userStatus);
           sessionStorage.setItem('userDetails', JSON.stringify(this.userStatus));
+          sessionStorage.setItem('userAccessToken', this.result.accesstoken)
           this.$router.push('/landingpage')
           window.location.reload();
         }

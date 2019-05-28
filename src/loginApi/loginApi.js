@@ -5,7 +5,7 @@ export default{
     authenticate(callback,obj){
         makeApiCall.makePostRequest(apiPath.loginPath,callback,obj)
     },
-    logout(callback){
-        makeApiCall.makeGetRequestwithoutParam(apiPath.logoutPath, callback)
+    logout(callback, obj){
+        makeApiCall.makeGetRequestGen(apiPath.logoutPath, callback, obj)
     }
 }

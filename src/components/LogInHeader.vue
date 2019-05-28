@@ -83,7 +83,7 @@ export default {
       this.$router.push({name:"profile"})
     },
     logout(){
-      this.$store.dispatch('logoutuser');
+      this.$store.dispatch('logoutuser',sessionStorage.getItem('userAccessToken'));
       this.$router.push({name: "landingpage"});
     },
     
@@ -91,7 +91,7 @@ export default {
   props: {
   },
   created(){
-    this.$store.dispatch('fetchProfile');
+    //this.$store.dispatch('fetchProfile', sessionStorage);
     this.$store.dispatch('getAllSubCategories');
     if(sessionStorage.getItem('userDetails')){
         this.userName = JSON.parse(sessionStorage.getItem('userDetails')).payload.name
@@ -122,6 +122,7 @@ export default {
       getLogoutResult: function(newValue, oldValue){
         if(newValue.status == "success"){
           sessionStorage.removeItem('userDetails')
+          sessionStorage.removeItem('userAccessToken')
           console.log("successfully logged out")
           window.location.reload();
         }

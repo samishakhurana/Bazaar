@@ -2,7 +2,7 @@
     <div>
         <b-container class="cdata">
             <b-row v-for="item in cartlist" v-bind:key="item.mId">
-                <div v-if="check(item)">
+                <!-- <div v-if="this.check(item)"> -->
                 <b-col><img :src="item.imgurl" alt="product image" id="cartImage"></b-col>
                 <b-col>
                     <p>{{item.productname}}</p>
@@ -11,7 +11,7 @@
                     <button @click="deleteFromCart(item)">Delete</button>
                     <hr>
                 </b-col>
-                </div>
+                <!-- </div> -->
             </b-row>
         </b-container>
         <b-button variant="primary" @click="buyNow">Buy Now</b-button>
@@ -37,11 +37,13 @@ export default {
         }
     },
     created(){
-         this.$store.dispatch('fetchCart');  
+        if(sessionStorage.getItem('userAccessToken'))
+            this.$store.dispatch('fetchCart', sessionStorage.getItem('userAccessToken'));  
     },
     methods: {
         ...mapActions(['fetchCart']),
         deleteFromCart: function(item){
+            item.accesstoken = sessionStorage.getItem("userAccessToken")? sessionStorage.getItem("userAccessToken"): null
             this.$store.dispatch('delFromCart', item); 
             this.deletedCart.push(item);            
         },

@@ -50,7 +50,10 @@ export default {
         }
     },
     created(){
-        this.$store.dispatch('fetchProfile');  
+        if(sessionStorage.getItem('userAccessToken'))
+            this.$store.dispatch('fetchProfile', sessionStorage.getItem('userAccessToken'));  
+        else
+            alert("You need to login to view your profile")
     },
     methods: {
         ...mapActions(['fetchProfile'])

@@ -8,8 +8,8 @@ export default{
     searchData(searchtext, callback){
         makeApiCall.makeGetRequestwithParam(apiPath.searchProductList, searchtext, callback)
     },
-    getProfile(callback){
-        makeApiCall.makeGetRequest(apiPath.getUserProfile, callback)
+    getProfile(callback, params){
+        makeApiCall.makeGetRequestGen(apiPath.getUserProfile, callback, params)
     },
     getFields(callback){
         makeApiCall.makeGetRequest(apiPath.getCategoriesList, callback)

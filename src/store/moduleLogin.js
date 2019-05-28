@@ -25,11 +25,11 @@ export default {
                 context.commit('SET_RESULT',result.data)
             },obj)
         },
-        logoutuser: (context) => {
+        logoutuser: (context, token) => {
             console.log("logging out");
             loginApi.logout((result) => {
                 context.commit("SET_LOGOUTRESULT", result.data)        
-            })
+            }, {"accesstoken": token})
         }
     }
  }

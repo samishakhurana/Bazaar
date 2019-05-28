@@ -18,10 +18,11 @@ export default {
         },  
     },
     actions: {
-        fetchCart: (context) => {
+        fetchCart: (context, token) => {
+            console.log("cart access token "+token)
             cartAPI.getCartDetails((result) => {
                 context.commit('setCartData',result.data)
-            })
+            }, {"accesstoken": token})
         },
         delFromCart: (context, item) => {
             cartAPI.deleteFromCart((result) => {

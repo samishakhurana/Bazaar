@@ -55,5 +55,13 @@ export default{
         })
         .then(callback)
         .catch((error)=>{console.log(error)})
+    },
+    makeGetRequestGen(path, callback, params_in){
+        console.log("params are "+params_in.accesstoken)
+        axios.get(path, {
+            params: params_in
+        })
+        .then(callback)
+        .catch((error)=>{console.log(error)})
     }
 }

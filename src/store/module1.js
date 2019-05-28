@@ -34,11 +34,11 @@ export default{
                 context.commit('UPDATE_SEARCHPRODUCTS',result.data)
             })
         },
-        fetchProfile:(context)=>{
+        fetchProfile:(context, token)=>{
             productAPI.getProfile( (result)=>{
                 console.log('response', result.data)
                 context.commit('UPDATE_USERPROFILE',result.data)
-            })
+            }, {"accesstoken": token})
         }
     }
 }

@@ -163,7 +163,8 @@ export default {
           'merchantId':this.selectedMerchantId,
           'productname':this.product.name,
           'imgurl':this.product.imageUrl["1"],
-          'price':this.selectedMerchantPrice
+          'price':this.selectedMerchantPrice,
+          'accesstoken': sessionStorage.getItem("userAccessToken") ? sessionStorage.getItem("userAccessToken"): null
         }
         this.guestCart=JSON.parse(localStorage.getItem('guestCarts'))
         this.guestCart.push(temp);

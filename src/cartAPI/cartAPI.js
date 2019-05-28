@@ -9,8 +9,8 @@ export default{
     addToCart(callback,obj){
         makeApiCall.makePostRequest(apiPath.addToCart,callback,obj)
     },
-    getCartDetails(callback){
-        makeApiCall.makeGetRequestwithoutParam(apiPath.getCart, callback)
+    getCartDetails(callback, params){
+        makeApiCall.makeGetRequestGen(apiPath.getCart, callback, params)
     },
     deleteFromCart(callback, obj){
         makeApiCall.makePostRequest(apiPath.deleteFromCart, callback, obj)
