@@ -12,7 +12,7 @@
         </div>
         <label>Enter your billing address</label><br>
         <textarea name="billingAddress" rows=3 cols=15 id="badd"></textarea><br>
-        <label>Enter your shiping address</label><br>
+        <label>Enter your shipping address</label><br>
         <textarea name="billingAddress" rows=3 cols=15 id="sadd"></textarea><br>
         <label>Enter your pincode</label><br>
         <input type="textarea" name="pincode"/><br>
