@@ -4,12 +4,12 @@
     <div class="center-div">
         <div v-if="check">
         <label>Enter your email</label><br>
-        <input type="text" name="email" :placeholder="uDetails.email"/><br>
+        <input type="text" name="email" :placeholder="email"/><br>
         </div>
-        <!-- <div v-else>
+        <div v-else>
         <label>Enter your email</label><br>
         <input type="text" name="email"/><br>
-        </div> -->
+        </div>
         <label>Enter your billing address</label><br>
         <textarea name="billingAddress" rows=3 cols=15 id="badd"></textarea><br>
         <label>Enter your shiping address</label><br>
@@ -32,12 +32,14 @@ export default {
             uDetails:{},
             cartData:[],
             id:0,
-            //email:JSON.parse(sessionStorage.getItem('userDetails')).payload.email,
+            email:"",
            
         }
     },
     created(){
+        if(window.sessionStorage.length!=0)
         var id=JSON.parse(sessionStorage.getItem('userDetails')).payload.uid;
+        var email=JSON.parse(sessionStorage.getItem('userDetails')).payload.email;
         console.log(id);
         this.$store.dispatch('fetchCart');
     },
@@ -59,7 +61,9 @@ export default {
             this.$store.dispatch('doPayment',temp);
         },
         check(){
-            if()
+            if(window.sessionStorage.length==0){
+                return false;
+            }
         }
     },
     computed:{
