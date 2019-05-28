@@ -8,6 +8,7 @@ import Checkout from './views/Checkout.vue'
 import ProductDetails from './views/ProductDetails.vue'
 import PaymentPage from './views/PaymentPage.vue'
 import CartPage from './views/Cart.vue'
+import ProductView from './views/ProductView.vue'
 
 Vue.use(Router)
 
@@ -61,6 +62,11 @@ const router = new Router({
     name:'cart',
     path:'/mycart',
     component:CartPage
+  },
+  {
+    name:'productview',
+    path:'/productview/:name',
+    component:ProductView
   }
 ]
 })
