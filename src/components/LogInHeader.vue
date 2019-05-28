@@ -23,7 +23,7 @@
           <!-- <b-form-input size="sm" class="mr-sm-2" placeholder="Search your fav product" v-model="searchtext" ></b-form-input> -->
           <b-button size="sm" class="my-2 my-sm-0" variant="btn btn-primary" @click="searchByName"><b>Search</b></b-button>
         </div>
-       <div v-if="validate()">
+       <div v-if="validate">
         <b-nav-item >
           <b-button variant="btn btn-primary" class="spacingButton" @click="navigateToLoginSignup"><b>Login/Signup</b></b-button>
         </b-nav-item>
@@ -59,7 +59,8 @@ export default {
        userName: '', 
        userpayload:{},
        subCategories:[],
-       subCatProd:[]
+       subCatProd:[],
+      // loginStatus: 'false'
      }
   },
   methods: {
@@ -70,14 +71,7 @@ export default {
     navigateToLoginSignup(){
       this.$router.push({name:"loginsignup"});
     },
-    validate(){
-      if(window.sessionStorage.length==0){
-        return true;
-      }
-      else{
-        return false;
-      }
-    },
+    
     navigateTo(e){
       console.log("in navigation", e.target.text);
       this.$store.dispatch('getProductsBySubCategory',e.target.text);
@@ -86,10 +80,10 @@ export default {
       this.$router.push({name:"profile"})
     },
     logout(){
-      window.sessionStorage.removeItem('userDetails')
+      this.$store.dispatch('logoutuser');
       this.$router.push({name: "landingpage"});
-      window.location.reload();
-    }
+    },
+    
   },
   props: {
   },
@@ -104,9 +98,13 @@ export default {
        ...mapGetters({
         getUserInfos: 'getUserInfo',
         getCategories: 'getCategories',
-        getproductsFromCategories: 'getproductsFromCategories'
+        getproductsFromCategories: 'getproductsFromCategories',
+        getLogoutResult: 'getLogoutResult',
        }),
-       ...mapActions(['fetchProfile']) 
+       ...mapActions(['fetchProfile', 'logoutuser']),
+       validate: function(){
+        return !window.sessionStorage.getItem('userDetails')
+      }, 
   },
   watch : { 
       getUserInfos: function (newValue, oldValue) {
@@ -122,6 +120,13 @@ export default {
         console.log("in watch");
         this.subCatProd = newValue
         console.log('Product from Categories ', this.subCatProd)
+      },
+      getLogoutResult: function(newValue, oldValue){
+        if(newValue.status == "success"){
+          sessionStorage.removeItem('userDetails')
+          console.log("successfully logged out")
+          window.location.reload();
+        }
       }
     }
 }

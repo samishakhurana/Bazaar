@@ -44,6 +44,8 @@ export default{
                 "id": params_in.id
             }
         })
+        .then(callback)
+        .catch((error)=>{console.log(error)})
     },
     makeGetRequestwithParamProd(path,callback,params_in){
         axios.get(path, {
@@ -51,5 +53,7 @@ export default{
                 "subcategory": params_in
             }
         })
+        .then(callback)
+        .catch((error)=>{console.log(error)})
     }
 }
