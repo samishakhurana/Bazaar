@@ -20,7 +20,7 @@
                 <b-container>
                 <b-row class="details-row" v-for="order in userpayload.orderHistory" v-bind:key="order.ordernumber">
                     <b-col>
-                        <b-img class="prod-image" :src="order.imgurl" alt="some image"></b-img>
+                        <img class="prod-image" :src="order.imgurl" alt="some image">
                     </b-col>
                     <b-col class="details-col">
                         <p><span>Product Name: </span><span>{{order.productname}}</span></p>

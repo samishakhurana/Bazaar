@@ -166,20 +166,11 @@ export default {
           'price':this.selectedMerchantPrice,
           'accesstoken': sessionStorage.getItem("userAccessToken") ? sessionStorage.getItem("userAccessToken"): null
         }
-        this.guestCart=JSON.parse(localStorage.getItem('guestCarts'))
-        this.guestCart.push(temp);
-        console.log(this.guestCart)
-        if(window.sessionStorage.length==0){
-          console.log("in guest user ");
-          console.log(temp);
-          localStorage.setItem('guestCarts', JSON.stringify(this.guestCart));
-        }
-        else{
+      
         var merchantObj;
         console.log("in add to cart");
         console.log(temp);
         this.$store.dispatch('addToCart', temp);
-        }
           
       },
       // ...mapActions(['getSingleProduct']),

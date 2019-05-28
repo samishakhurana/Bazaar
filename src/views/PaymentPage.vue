@@ -16,7 +16,7 @@
         <textarea name="billingAddress" rows=3 cols=15 id="sadd"></textarea><br>
         <label>Enter your pincode</label><br>
         <input type="textarea" name="pincode"/><br>
-        <label>Total amount to be paid </label><br>
+        <label>Total amount to be paid: {{totalamount}} </label><br>
         <button class="btn btn-primary" type="submit" @click="payment()">Pay now</button><br>
     </div>
 </div>
@@ -33,6 +33,7 @@ export default {
             cartData:[],
             id:0,
             email:"",
+            totalamount: Number
            
         }
     },
@@ -42,7 +43,7 @@ export default {
         var email=JSON.parse(sessionStorage.getItem('userDetails')).payload.email;
         }
         console.log(id);
-        this.$store.dispatch('fetchCart');
+        this.$store.dispatch('fetchCart', sessionStorage.getItem('userAccessToken'));
     },
     methods:{
         
@@ -56,7 +57,8 @@ export default {
                 'paymentoption':"Cash on Delivery",
                 'billingaddress': document.getElementById("badd").value,
                 'shippingaddress':document.getElementById("sadd").value,
-                'productlist':this.cartData
+                'productlist':this.cartData,
+                'accesstoken': sessionStorage.getItem('userAccessToken')
             }
             console.log(temp);
             this.$store.dispatch('doPayment',temp);
@@ -71,8 +73,7 @@ export default {
     computed:{
         ...mapGetters({
         doPayment: 'doPayment',
-        getDataFromCart:'getDataFromCart'
-
+        getCartInfo:'getCartInfo',
        })
     },
     watch:{
@@ -80,9 +81,12 @@ export default {
         this.paymentresult = newValue
         console.log('Payment Result', this.paymentresult);
       },
-      getDataFromCart:function(newValue, oldValue){
-          this.cartData=newValue
+      getCartInfo:function(newValue, oldValue){
+          this.cartData=newValue.payload.list
           console.log('Content from cart',this.cartData)
+            for(let i = 0; i < this.cartdata; i++){
+                totalamount += (this.cartdata[i].price)*(this.cartdata[i].quantity)
+            }
       }
     }
 }
