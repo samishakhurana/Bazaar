@@ -40,7 +40,7 @@ export default {
         },
         gotoproduct(){
             console.log(this.productdata);
-            this.$router.push('/productdetails'+ '?id=' + this.productdata.id)
+            this.$router.push('/productdetails/' + this.productdata.id)
         }
     }
 }

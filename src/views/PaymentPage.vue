@@ -2,8 +2,14 @@
 <div>
     <h2>Just one more step and your favourite products are yours!!</h2>
     <div class="center-div">
+        <div v-if="check">
+        <label>Enter your email</label><br>
+        <input type="text" name="email" :placeholder="email"/><br>
+        </div>
+        <div v-else>
         <label>Enter your email</label><br>
         <input type="text" name="email"/><br>
+        </div>
         <label>Enter your billing address</label><br>
         <textarea name="billingAddress" rows=3 cols=15 id="badd"></textarea><br>
         <label>Enter your shiping address</label><br>
@@ -25,11 +31,15 @@ export default {
             paymentresult:{},
             uDetails:{},
             cartData:[],
-            id:0
+            id:0,
+            email:"",
+           
         }
     },
     created(){
+        if(window.sessionStorage.length!=0)
         var id=JSON.parse(sessionStorage.getItem('userDetails')).payload.uid;
+        var email=JSON.parse(sessionStorage.getItem('userDetails')).payload.email;
         console.log(id);
         this.$store.dispatch('fetchCart');
     },
@@ -49,6 +59,11 @@ export default {
             }
             console.log(temp);
             this.$store.dispatch('doPayment',temp);
+        },
+        check(){
+            if(window.sessionStorage.length==0){
+                return false;
+            }
         }
     },
     computed:{
@@ -76,7 +91,7 @@ export default {
 {
   position: absolute;
   margin: auto;
-  top: 0;
+  
   right: 0;
   bottom: 0;
   left: 0;
@@ -84,6 +99,7 @@ export default {
   height: 70%;
   background-color: #ccc;
   border-radius: 3px;
+  scroll-padding-top: 200px;
 }
 </style>
 
